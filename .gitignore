@@ -1,0 +1,11 @@
+Projects/
+bin/
+SimulationLib/
+.Xil/
+*.jou
+*.log
+*.bit
+*.bin
+*.dcp
+*.rpt
+*.rpx
