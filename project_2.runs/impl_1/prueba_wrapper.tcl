@@ -127,6 +127,7 @@ OPTRACE "add files" START { }
   add_files C:/ultima/project_2/project_2.srcs/sources_1/bd/prueba/prueba.bd
   set_param project.isImplRun false
 OPTRACE "read constraints: implementation" START { }
+  read_xdc C:/ultima/project_2/project_2.srcs/constrs_1/new/lola.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "read constraints: implementation_pre" START { }
 OPTRACE "read constraints: implementation_pre" END { }

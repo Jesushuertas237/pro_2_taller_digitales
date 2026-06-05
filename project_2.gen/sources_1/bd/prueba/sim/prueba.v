@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-//Date        : Fri Jun  5 09:29:54 2026
+//Date        : Fri Jun  5 14:50:47 2026
 //Host        : jesus running 64-bit major release  (build 9200)
 //Command     : generate_target prueba.bd
 //Design      : prueba
@@ -223,17 +223,57 @@ module microblaze_riscv_0_local_memory_imp_1WLJH39
         .web({microblaze_riscv_0_ilmb_cntlr_WE[0],microblaze_riscv_0_ilmb_cntlr_WE[1],microblaze_riscv_0_ilmb_cntlr_WE[2],microblaze_riscv_0_ilmb_cntlr_WE[3]}));
 endmodule
 
-(* CORE_GENERATION_INFO = "prueba,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=prueba,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=12,numReposBlks=11,numNonXlnxBlks=0,numHierBlks=1,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=1,da_board_cnt=8,da_microblaze_riscv_cnt=1,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "prueba.hwdef" *) 
+(* CORE_GENERATION_INFO = "prueba,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=prueba,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=14,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=1,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_board_cnt=10,da_bram_cntlr_cnt=2,da_clkrst_cnt=4,da_microblaze_riscv_cnt=1,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "prueba.hwdef" *) 
 module prueba
-   (dip_switches_16bits_tri_i,
+   (DDR2_0_addr,
+    DDR2_0_ba,
+    DDR2_0_cas_n,
+    DDR2_0_ck_n,
+    DDR2_0_ck_p,
+    DDR2_0_cke,
+    DDR2_0_cs_n,
+    DDR2_0_dm,
+    DDR2_0_dq,
+    DDR2_0_dqs_n,
+    DDR2_0_dqs_p,
+    DDR2_0_odt,
+    DDR2_0_ras_n,
+    DDR2_0_we_n,
     led_16bits_tri_o,
     reset,
     sys_clock);
-  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 dip_switches_16bits TRI_I" *) (* x_interface_mode = "Master" *) input [15:0]dip_switches_16bits_tri_i;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 ADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR2_0, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) (* x_interface_mode = "Master" *) output [12:0]DDR2_0_addr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 BA" *) output [2:0]DDR2_0_ba;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 CAS_N" *) output DDR2_0_cas_n;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 CK_N" *) output [0:0]DDR2_0_ck_n;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 CK_P" *) output [0:0]DDR2_0_ck_p;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 CKE" *) output [0:0]DDR2_0_cke;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 CS_N" *) output [0:0]DDR2_0_cs_n;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 DM" *) output [1:0]DDR2_0_dm;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 DQ" *) inout [15:0]DDR2_0_dq;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 DQS_N" *) inout [1:0]DDR2_0_dqs_n;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 DQS_P" *) inout [1:0]DDR2_0_dqs_p;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 ODT" *) output [0:0]DDR2_0_odt;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 RAS_N" *) output DDR2_0_ras_n;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR2_0 WE_N" *) output DDR2_0_we_n;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 led_16bits TRI_O" *) (* x_interface_mode = "Master" *) output [15:0]led_16bits_tri_o;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input reset;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.SYS_CLOCK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.SYS_CLOCK, CLK_DOMAIN prueba_sys_clock, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input sys_clock;
 
+  wire [12:0]DDR2_0_addr;
+  wire [2:0]DDR2_0_ba;
+  wire DDR2_0_cas_n;
+  wire [0:0]DDR2_0_ck_n;
+  wire [0:0]DDR2_0_ck_p;
+  wire [0:0]DDR2_0_cke;
+  wire [0:0]DDR2_0_cs_n;
+  wire [1:0]DDR2_0_dm;
+  wire [15:0]DDR2_0_dq;
+  wire [1:0]DDR2_0_dqs_n;
+  wire [1:0]DDR2_0_dqs_p;
+  wire [0:0]DDR2_0_odt;
+  wire DDR2_0_ras_n;
+  wire DDR2_0_we_n;
   wire [8:0]axi_smc_M00_AXI_ARADDR;
   wire axi_smc_M00_AXI_ARREADY;
   wire axi_smc_M00_AXI_ARVALID;
@@ -251,8 +291,41 @@ module prueba
   wire axi_smc_M00_AXI_WREADY;
   wire [3:0]axi_smc_M00_AXI_WSTRB;
   wire axi_smc_M00_AXI_WVALID;
+  wire [26:0]axi_smc_M01_AXI_ARADDR;
+  wire [1:0]axi_smc_M01_AXI_ARBURST;
+  wire [3:0]axi_smc_M01_AXI_ARCACHE;
+  wire [7:0]axi_smc_M01_AXI_ARLEN;
+  wire [0:0]axi_smc_M01_AXI_ARLOCK;
+  wire [2:0]axi_smc_M01_AXI_ARPROT;
+  wire [3:0]axi_smc_M01_AXI_ARQOS;
+  wire axi_smc_M01_AXI_ARREADY;
+  wire [2:0]axi_smc_M01_AXI_ARSIZE;
+  wire axi_smc_M01_AXI_ARVALID;
+  wire [26:0]axi_smc_M01_AXI_AWADDR;
+  wire [1:0]axi_smc_M01_AXI_AWBURST;
+  wire [3:0]axi_smc_M01_AXI_AWCACHE;
+  wire [7:0]axi_smc_M01_AXI_AWLEN;
+  wire [0:0]axi_smc_M01_AXI_AWLOCK;
+  wire [2:0]axi_smc_M01_AXI_AWPROT;
+  wire [3:0]axi_smc_M01_AXI_AWQOS;
+  wire axi_smc_M01_AXI_AWREADY;
+  wire [2:0]axi_smc_M01_AXI_AWSIZE;
+  wire axi_smc_M01_AXI_AWVALID;
+  wire axi_smc_M01_AXI_BREADY;
+  wire [1:0]axi_smc_M01_AXI_BRESP;
+  wire axi_smc_M01_AXI_BVALID;
+  wire [127:0]axi_smc_M01_AXI_RDATA;
+  wire axi_smc_M01_AXI_RLAST;
+  wire axi_smc_M01_AXI_RREADY;
+  wire [1:0]axi_smc_M01_AXI_RRESP;
+  wire axi_smc_M01_AXI_RVALID;
+  wire [127:0]axi_smc_M01_AXI_WDATA;
+  wire axi_smc_M01_AXI_WLAST;
+  wire axi_smc_M01_AXI_WREADY;
+  wire [15:0]axi_smc_M01_AXI_WSTRB;
+  wire axi_smc_M01_AXI_WVALID;
+  wire clk_wiz_1_clk_out2;
   wire clk_wiz_1_locked;
-  wire [15:0]dip_switches_16bits_tri_i;
   wire [15:0]led_16bits_tri_o;
   wire mdm_1_debug_sys_rst;
   wire microblaze_riscv_0_Clk;
@@ -303,14 +376,19 @@ module prueba
   wire microblaze_riscv_0_ilmb_1_READY;
   wire microblaze_riscv_0_ilmb_1_UE;
   wire microblaze_riscv_0_ilmb_1_WAIT;
+  wire mig_7series_0_init_calib_complete;
+  wire mig_7series_0_mmcm_locked;
+  wire mig_7series_0_ui_clk;
+  wire mig_7series_0_ui_clk_sync_rst;
   wire reset;
   wire [0:0]rst_clk_wiz_1_100M_bus_struct_reset;
   wire rst_clk_wiz_1_100M_mb_reset;
   wire [0:0]rst_clk_wiz_1_100M_peripheral_aresetn;
+  wire [0:0]rst_mig_7series_0_81M_peripheral_aresetn;
   wire sys_clock;
 
   prueba_axi_gpio_0_0 axi_gpio_0
-       (.gpio2_io_i(dip_switches_16bits_tri_i),
+       (.gpio2_io_i({mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete,mig_7series_0_init_calib_complete}),
         .gpio_io_o(led_16bits_tri_o),
         .s_axi_aclk(microblaze_riscv_0_Clk),
         .s_axi_araddr(axi_smc_M00_AXI_ARADDR),
@@ -349,6 +427,39 @@ module prueba
         .M00_AXI_wready(axi_smc_M00_AXI_WREADY),
         .M00_AXI_wstrb(axi_smc_M00_AXI_WSTRB),
         .M00_AXI_wvalid(axi_smc_M00_AXI_WVALID),
+        .M01_AXI_araddr(axi_smc_M01_AXI_ARADDR),
+        .M01_AXI_arburst(axi_smc_M01_AXI_ARBURST),
+        .M01_AXI_arcache(axi_smc_M01_AXI_ARCACHE),
+        .M01_AXI_arlen(axi_smc_M01_AXI_ARLEN),
+        .M01_AXI_arlock(axi_smc_M01_AXI_ARLOCK),
+        .M01_AXI_arprot(axi_smc_M01_AXI_ARPROT),
+        .M01_AXI_arqos(axi_smc_M01_AXI_ARQOS),
+        .M01_AXI_arready(axi_smc_M01_AXI_ARREADY),
+        .M01_AXI_arsize(axi_smc_M01_AXI_ARSIZE),
+        .M01_AXI_arvalid(axi_smc_M01_AXI_ARVALID),
+        .M01_AXI_awaddr(axi_smc_M01_AXI_AWADDR),
+        .M01_AXI_awburst(axi_smc_M01_AXI_AWBURST),
+        .M01_AXI_awcache(axi_smc_M01_AXI_AWCACHE),
+        .M01_AXI_awlen(axi_smc_M01_AXI_AWLEN),
+        .M01_AXI_awlock(axi_smc_M01_AXI_AWLOCK),
+        .M01_AXI_awprot(axi_smc_M01_AXI_AWPROT),
+        .M01_AXI_awqos(axi_smc_M01_AXI_AWQOS),
+        .M01_AXI_awready(axi_smc_M01_AXI_AWREADY),
+        .M01_AXI_awsize(axi_smc_M01_AXI_AWSIZE),
+        .M01_AXI_awvalid(axi_smc_M01_AXI_AWVALID),
+        .M01_AXI_bready(axi_smc_M01_AXI_BREADY),
+        .M01_AXI_bresp(axi_smc_M01_AXI_BRESP),
+        .M01_AXI_bvalid(axi_smc_M01_AXI_BVALID),
+        .M01_AXI_rdata(axi_smc_M01_AXI_RDATA),
+        .M01_AXI_rlast(axi_smc_M01_AXI_RLAST),
+        .M01_AXI_rready(axi_smc_M01_AXI_RREADY),
+        .M01_AXI_rresp(axi_smc_M01_AXI_RRESP),
+        .M01_AXI_rvalid(axi_smc_M01_AXI_RVALID),
+        .M01_AXI_wdata(axi_smc_M01_AXI_WDATA),
+        .M01_AXI_wlast(axi_smc_M01_AXI_WLAST),
+        .M01_AXI_wready(axi_smc_M01_AXI_WREADY),
+        .M01_AXI_wstrb(axi_smc_M01_AXI_WSTRB),
+        .M01_AXI_wvalid(axi_smc_M01_AXI_WVALID),
         .S00_AXI_araddr(microblaze_riscv_0_M_AXI_DP_ARADDR),
         .S00_AXI_arprot(microblaze_riscv_0_M_AXI_DP_ARPROT),
         .S00_AXI_arready(microblaze_riscv_0_M_AXI_DP_ARREADY),
@@ -369,10 +480,12 @@ module prueba
         .S00_AXI_wstrb(microblaze_riscv_0_M_AXI_DP_WSTRB),
         .S00_AXI_wvalid(microblaze_riscv_0_M_AXI_DP_WVALID),
         .aclk(microblaze_riscv_0_Clk),
+        .aclk1(mig_7series_0_ui_clk),
         .aresetn(rst_clk_wiz_1_100M_peripheral_aresetn));
   prueba_clk_wiz_1_0 clk_wiz_1
        (.clk_in1(sys_clock),
         .clk_out1(microblaze_riscv_0_Clk),
+        .clk_out2(clk_wiz_1_clk_out2),
         .locked(clk_wiz_1_locked),
         .resetn(reset));
   prueba_mdm_1_0 mdm_1
@@ -462,6 +575,64 @@ module prueba
         .ILMB_wait(microblaze_riscv_0_ilmb_1_WAIT),
         .LMB_Clk(microblaze_riscv_0_Clk),
         .SYS_Rst(rst_clk_wiz_1_100M_bus_struct_reset));
+  prueba_mig_7series_0_1 mig_7series_0
+       (.aresetn(rst_mig_7series_0_81M_peripheral_aresetn),
+        .clk_ref_i(clk_wiz_1_clk_out2),
+        .ddr2_addr(DDR2_0_addr),
+        .ddr2_ba(DDR2_0_ba),
+        .ddr2_cas_n(DDR2_0_cas_n),
+        .ddr2_ck_n(DDR2_0_ck_n),
+        .ddr2_ck_p(DDR2_0_ck_p),
+        .ddr2_cke(DDR2_0_cke),
+        .ddr2_cs_n(DDR2_0_cs_n),
+        .ddr2_dm(DDR2_0_dm),
+        .ddr2_dq(DDR2_0_dq),
+        .ddr2_dqs_n(DDR2_0_dqs_n),
+        .ddr2_dqs_p(DDR2_0_dqs_p),
+        .ddr2_odt(DDR2_0_odt),
+        .ddr2_ras_n(DDR2_0_ras_n),
+        .ddr2_we_n(DDR2_0_we_n),
+        .init_calib_complete(mig_7series_0_init_calib_complete),
+        .mmcm_locked(mig_7series_0_mmcm_locked),
+        .s_axi_araddr(axi_smc_M01_AXI_ARADDR),
+        .s_axi_arburst(axi_smc_M01_AXI_ARBURST),
+        .s_axi_arcache(axi_smc_M01_AXI_ARCACHE),
+        .s_axi_arid({1'b0,1'b0,1'b0,1'b0}),
+        .s_axi_arlen(axi_smc_M01_AXI_ARLEN),
+        .s_axi_arlock(axi_smc_M01_AXI_ARLOCK),
+        .s_axi_arprot(axi_smc_M01_AXI_ARPROT),
+        .s_axi_arqos(axi_smc_M01_AXI_ARQOS),
+        .s_axi_arready(axi_smc_M01_AXI_ARREADY),
+        .s_axi_arsize(axi_smc_M01_AXI_ARSIZE),
+        .s_axi_arvalid(axi_smc_M01_AXI_ARVALID),
+        .s_axi_awaddr(axi_smc_M01_AXI_AWADDR),
+        .s_axi_awburst(axi_smc_M01_AXI_AWBURST),
+        .s_axi_awcache(axi_smc_M01_AXI_AWCACHE),
+        .s_axi_awid({1'b0,1'b0,1'b0,1'b0}),
+        .s_axi_awlen(axi_smc_M01_AXI_AWLEN),
+        .s_axi_awlock(axi_smc_M01_AXI_AWLOCK),
+        .s_axi_awprot(axi_smc_M01_AXI_AWPROT),
+        .s_axi_awqos(axi_smc_M01_AXI_AWQOS),
+        .s_axi_awready(axi_smc_M01_AXI_AWREADY),
+        .s_axi_awsize(axi_smc_M01_AXI_AWSIZE),
+        .s_axi_awvalid(axi_smc_M01_AXI_AWVALID),
+        .s_axi_bready(axi_smc_M01_AXI_BREADY),
+        .s_axi_bresp(axi_smc_M01_AXI_BRESP),
+        .s_axi_bvalid(axi_smc_M01_AXI_BVALID),
+        .s_axi_rdata(axi_smc_M01_AXI_RDATA),
+        .s_axi_rlast(axi_smc_M01_AXI_RLAST),
+        .s_axi_rready(axi_smc_M01_AXI_RREADY),
+        .s_axi_rresp(axi_smc_M01_AXI_RRESP),
+        .s_axi_rvalid(axi_smc_M01_AXI_RVALID),
+        .s_axi_wdata(axi_smc_M01_AXI_WDATA),
+        .s_axi_wlast(axi_smc_M01_AXI_WLAST),
+        .s_axi_wready(axi_smc_M01_AXI_WREADY),
+        .s_axi_wstrb(axi_smc_M01_AXI_WSTRB),
+        .s_axi_wvalid(axi_smc_M01_AXI_WVALID),
+        .sys_clk_i(microblaze_riscv_0_Clk),
+        .sys_rst(rst_clk_wiz_1_100M_peripheral_aresetn),
+        .ui_clk(mig_7series_0_ui_clk),
+        .ui_clk_sync_rst(mig_7series_0_ui_clk_sync_rst));
   prueba_rst_clk_wiz_1_100M_0 rst_clk_wiz_1_100M
        (.aux_reset_in(1'b1),
         .bus_struct_reset(rst_clk_wiz_1_100M_bus_struct_reset),
@@ -471,4 +642,11 @@ module prueba
         .mb_reset(rst_clk_wiz_1_100M_mb_reset),
         .peripheral_aresetn(rst_clk_wiz_1_100M_peripheral_aresetn),
         .slowest_sync_clk(microblaze_riscv_0_Clk));
+  prueba_rst_mig_7series_0_81M_0 rst_mig_7series_0_81M
+       (.aux_reset_in(1'b1),
+        .dcm_locked(mig_7series_0_mmcm_locked),
+        .ext_reset_in(mig_7series_0_ui_clk_sync_rst),
+        .mb_debug_sys_rst(1'b0),
+        .peripheral_aresetn(rst_mig_7series_0_81M_peripheral_aresetn),
+        .slowest_sync_clk(mig_7series_0_ui_clk));
 endmodule
