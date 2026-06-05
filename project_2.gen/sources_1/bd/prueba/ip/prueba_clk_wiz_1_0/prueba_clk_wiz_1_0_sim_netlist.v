@@ -2,7 +2,7 @@
 // Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-// Date        : Fri Jun  5 08:17:34 2026
+// Date        : Fri Jun  5 11:10:30 2026
 // Host        : jesus running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0_sim_netlist.v
@@ -16,32 +16,38 @@
 (* NotValidForBitStream *)
 module prueba_clk_wiz_1_0
    (clk_out1,
+    clk_out2,
     resetn,
     locked,
     clk_in1);
   output clk_out1;
+  output clk_out2;
   input resetn;
   output locked;
   input clk_in1;
 
   (* IBUF_LOW_PWR *) (* RTL_KEEP = "yes" *) wire clk_in1;
   wire clk_out1;
+  wire clk_out2;
   wire locked;
   (* RTL_KEEP = "yes" *) wire resetn;
 
   prueba_clk_wiz_1_0_clk_wiz inst
        (.clk_in1(clk_in1),
         .clk_out1(clk_out1),
+        .clk_out2(clk_out2),
         .locked(locked),
         .resetn(resetn));
 endmodule
 
 module prueba_clk_wiz_1_0_clk_wiz
    (clk_out1,
+    clk_out2,
     resetn,
     locked,
     clk_in1);
   output clk_out1;
+  output clk_out2;
   input resetn;
   output locked;
   input clk_in1;
@@ -50,6 +56,8 @@ module prueba_clk_wiz_1_0_clk_wiz
   wire clk_in1_prueba_clk_wiz_1_0;
   wire clk_out1;
   wire clk_out1_prueba_clk_wiz_1_0;
+  wire clk_out2;
+  wire clk_out2_prueba_clk_wiz_1_0;
   wire clkfbout_buf_prueba_clk_wiz_1_0;
   wire clkfbout_prueba_clk_wiz_1_0;
   wire locked;
@@ -59,7 +67,6 @@ module prueba_clk_wiz_1_0_clk_wiz
   wire NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED;
-  wire NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED;
@@ -90,6 +97,10 @@ module prueba_clk_wiz_1_0_clk_wiz
        (.I(clk_out1_prueba_clk_wiz_1_0),
         .O(clk_out1));
   (* BOX_TYPE = "PRIMITIVE" *) 
+  BUFG clkout2_buf
+       (.I(clk_out2_prueba_clk_wiz_1_0),
+        .O(clk_out2));
+  (* BOX_TYPE = "PRIMITIVE" *) 
   MMCME2_ADV #(
     .BANDWIDTH("OPTIMIZED"),
     .CLKFBOUT_MULT_F(10.000000),
@@ -101,7 +112,7 @@ module prueba_clk_wiz_1_0_clk_wiz
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
     .CLKOUT0_USE_FINE_PS("FALSE"),
-    .CLKOUT1_DIVIDE(1),
+    .CLKOUT1_DIVIDE(5),
     .CLKOUT1_DUTY_CYCLE(0.500000),
     .CLKOUT1_PHASE(0.000000),
     .CLKOUT1_USE_FINE_PS("FALSE"),
@@ -150,7 +161,7 @@ module prueba_clk_wiz_1_0_clk_wiz
         .CLKINSTOPPED(NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED),
         .CLKOUT0(clk_out1_prueba_clk_wiz_1_0),
         .CLKOUT0B(NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED),
-        .CLKOUT1(NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED),
+        .CLKOUT1(clk_out2_prueba_clk_wiz_1_0),
         .CLKOUT1B(NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED),
         .CLKOUT2(NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED),
         .CLKOUT2B(NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED),

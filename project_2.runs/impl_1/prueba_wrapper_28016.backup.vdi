@@ -1,0 +1,948 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Fri Jun  5 12:29:51 2026
+# Process ID         : 28016
+# Current directory  : C:/ultima/project_2/project_2.runs/impl_1
+# Command line       : vivado.exe -log prueba_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source prueba_wrapper.tcl -notrace
+# Log file           : C:/ultima/project_2/project_2.runs/impl_1/prueba_wrapper.vdi
+# Journal file       : C:/ultima/project_2/project_2.runs/impl_1\vivado.jou
+# Running On         : jesus
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : AMD Ryzen 5 4600H with Radeon Graphics         
+# CPU Frequency      : 2994 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16495 MB
+# Swap memory        : 19465 MB
+# Total Virtual      : 35960 MB
+# Available Virtual  : 6940 MB
+#-----------------------------------------------------------
+source prueba_wrapper.tcl -notrace
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:05 . Memory (MB): peak = 495.031 ; gain = 215.512
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/2025.1/Vivado/data/ip'.
+add_files: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 572.301 ; gain = 77.270
+Command: link_design -top prueba_wrapper -part xc7a100tcsg324-1
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Project 1-5699] Read binary netlist with skipMacroContent - 1
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_gpio_0_0/prueba_axi_gpio_0_0.dcp' for cell 'prueba_i/axi_gpio_0'
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/prueba_axi_smc_0.dcp' for cell 'prueba_i/axi_smc'
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0.dcp' for cell 'prueba_i/clk_wiz_1'
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.dcp' for cell 'prueba_i/mdm_1'
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_microblaze_riscv_0_0/prueba_microblaze_riscv_0_0.dcp' for cell 'prueba_i/microblaze_riscv_0'
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mig_7series_0_1/prueba_mig_7series_0_1.dcp' for cell 'prueba_i/mig_7series_0'
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_rst_clk_wiz_1_100M_0/prueba_rst_clk_wiz_1_100M_0.dcp' for cell 'prueba_i/rst_clk_wiz_1_100M'
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_rst_mig_7series_0_81M_0/prueba_rst_mig_7series_0_81M_0.dcp' for cell 'prueba_i/rst_mig_7series_0_81M'
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_dlmb_bram_if_cntlr_0/prueba_dlmb_bram_if_cntlr_0.dcp' for cell 'prueba_i/microblaze_riscv_0_local_memory/dlmb_bram_if_cntlr'
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_dlmb_v10_0/prueba_dlmb_v10_0.dcp' for cell 'prueba_i/microblaze_riscv_0_local_memory/dlmb_v10'
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_ilmb_bram_if_cntlr_0/prueba_ilmb_bram_if_cntlr_0.dcp' for cell 'prueba_i/microblaze_riscv_0_local_memory/ilmb_bram_if_cntlr'
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_ilmb_v10_0/prueba_ilmb_v10_0.dcp' for cell 'prueba_i/microblaze_riscv_0_local_memory/ilmb_v10'
+INFO: [Project 1-454] Reading design checkpoint 'c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_lmb_bram_0/prueba_lmb_bram_0.dcp' for cell 'prueba_i/microblaze_riscv_0_local_memory/lmb_bram'
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.557 . Memory (MB): peak = 869.254 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 666 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Opt 31-32] Removing redundant IBUF since it is not being driven by a top-level port. prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_ddr2_clk_ibuf/se_input_clk.u_ibufg_sys_clk 
+Resolution: The tool has removed redundant IBUF. To resolve this warning, check for redundant IBUF in the input design.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'prueba_i/mig_7series_0/sys_clk_i' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_microblaze_riscv_0_0/prueba_microblaze_riscv_0_0.xdc] for cell 'prueba_i/microblaze_riscv_0/U0'
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_microblaze_riscv_0_0/prueba_microblaze_riscv_0_0.xdc] for cell 'prueba_i/microblaze_riscv_0/U0'
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0_board.xdc] for cell 'prueba_i/clk_wiz_1/inst'
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0_board.xdc] for cell 'prueba_i/clk_wiz_1/inst'
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0.xdc] for cell 'prueba_i/clk_wiz_1/inst'
+INFO: [Timing 38-35] Done setting XDC timing constraints. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0.xdc:54]
+INFO: [Timing 38-2] Deriving generated clocks [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0.xdc:54]
+get_clocks: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1630.125 ; gain = 569.781
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0.xdc] for cell 'prueba_i/clk_wiz_1/inst'
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_rst_clk_wiz_1_100M_0/prueba_rst_clk_wiz_1_100M_0_board.xdc] for cell 'prueba_i/rst_clk_wiz_1_100M/U0'
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_rst_clk_wiz_1_100M_0/prueba_rst_clk_wiz_1_100M_0_board.xdc] for cell 'prueba_i/rst_clk_wiz_1_100M/U0'
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_gpio_0_0/prueba_axi_gpio_0_0_board.xdc] for cell 'prueba_i/axi_gpio_0/U0'
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_gpio_0_0/prueba_axi_gpio_0_0_board.xdc] for cell 'prueba_i/axi_gpio_0/U0'
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_1/bd_3e18_psr0_0_board.xdc] for cell 'prueba_i/axi_smc/inst/clk_map/psr0/U0'
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_1/bd_3e18_psr0_0_board.xdc] for cell 'prueba_i/axi_smc/inst/clk_map/psr0/U0'
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_2/bd_3e18_psr_aclk_0_board.xdc] for cell 'prueba_i/axi_smc/inst/clk_map/psr_aclk/U0'
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_2/bd_3e18_psr_aclk_0_board.xdc] for cell 'prueba_i/axi_smc/inst/clk_map/psr_aclk/U0'
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_3/bd_3e18_psr_aclk1_0_board.xdc] for cell 'prueba_i/axi_smc/inst/clk_map/psr_aclk1/U0'
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_3/bd_3e18_psr_aclk1_0_board.xdc] for cell 'prueba_i/axi_smc/inst/clk_map/psr_aclk1/U0'
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc] for cell 'prueba_i/axi_smc/inst'
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-1' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:3]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:4]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:5]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:6]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:7]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:8]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:9]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:10]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:11]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:12]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-1' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:13]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-1' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:14]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:15]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:16]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:17]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:19]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:20]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:23]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:24]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:25]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:26]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:27]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:28]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:29]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:31]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:33]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:34]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:36]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:40]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-1' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:41]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-2' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:42]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-2' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:43]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-2' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:44]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-10' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:45]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-10' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:46]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-10' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:47]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-4' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:48]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-4' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:49]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-4' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:50]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-13' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:51]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-13' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:52]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-1' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:53]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-13' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:54]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-10' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:55]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-11' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:56]
+WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-2' -to list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc:57]
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc] for cell 'prueba_i/axi_smc/inst'
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mig_7series_0_1/prueba_mig_7series_0_1/user_design/constraints/prueba_mig_7series_0_1.xdc] for cell 'prueba_i/mig_7series_0'
+INFO: [Vivado 12-4777] Setting CLOCK_DEDICATED_ROUTE constraint on the PARENT net instead of the specified net segment (net name: prueba_i/mig_7series_0/sys_clk_i). Placer only honors CLOCK_DEDICATED_ROUTE when set on the PARENT net, e.g. net segment directly connected to the driver. To eliminate this message, please update your constraint to specify the PARENT net instead. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mig_7series_0_1/prueba_mig_7series_0_1/user_design/constraints/prueba_mig_7series_0_1.xdc:41]
+CRITICAL WARNING: [Netlist 29-160] Cannot set property 'IOSTANDARD', because the property does not exist for objects of type 'pin'. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mig_7series_0_1/prueba_mig_7series_0_1/user_design/constraints/prueba_mig_7series_0_1.xdc:265]
+Resolution: Modify the set_property command to apply the property on the correct object type. Since the property is being applied as a scoped constraint, ensure the proper connectivity of the object port objects can be translated into pin objects. This could be due to the insertion of IO Buffers between the top level terminal and cell pin. If the goal is to apply constraints that will migrate to top level ports it is required that IO Buffers manually be instanced.
+CRITICAL WARNING: [Netlist 29-160] Cannot set property 'PACKAGE_PIN', because the property does not exist for objects of type 'pin'. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mig_7series_0_1/prueba_mig_7series_0_1/user_design/constraints/prueba_mig_7series_0_1.xdc:266]
+Resolution: Modify the set_property command to apply the property on the correct object type. Since the property is being applied as a scoped constraint, ensure the proper connectivity of the object port objects can be translated into pin objects. This could be due to the insertion of IO Buffers between the top level terminal and cell pin. If the goal is to apply constraints that will migrate to top level ports it is required that IO Buffers manually be instanced.
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mig_7series_0_1/prueba_mig_7series_0_1/user_design/constraints/prueba_mig_7series_0_1.xdc] for cell 'prueba_i/mig_7series_0'
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mig_7series_0_1/prueba_mig_7series_0_1_board.xdc] for cell 'prueba_i/mig_7series_0'
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mig_7series_0_1/prueba_mig_7series_0_1_board.xdc] for cell 'prueba_i/mig_7series_0'
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_rst_mig_7series_0_81M_0/prueba_rst_mig_7series_0_81M_0_board.xdc] for cell 'prueba_i/rst_mig_7series_0_81M/U0'
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_rst_mig_7series_0_81M_0/prueba_rst_mig_7series_0_81M_0_board.xdc] for cell 'prueba_i/rst_mig_7series_0_81M/U0'
+Parsing XDC File [C:/ultima/project_2/project_2.srcs/constrs_1/new/lola.xdc]
+Finished Parsing XDC File [C:/ultima/project_2/project_2.srcs/constrs_1/new/lola.xdc]
+Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.xdc] for cell 'prueba_i/mdm_1/U0'
+INFO: [Timing 38-2] Deriving generated clocks [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.xdc:5]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-1' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.xdc:30]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-1' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.xdc:31]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-2' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.xdc:39]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-7' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.xdc:40]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-10' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.xdc:41]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-11' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.xdc:42]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-13' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.xdc:46]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-15' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.xdc:48]
+WARNING: [Vivado_Tcl 4-919] Waiver ID 'CDC-15' -from list should not be empty. [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.xdc:49]
+Finished Parsing XDC File [c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mdm_1_0/prueba_mdm_1_0.xdc] for cell 'prueba_i/mdm_1/U0'
+INFO: [Project 1-1714] 79 XPM XDC files have been applied to the design.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Generating merged BMM file for the design top 'prueba_wrapper'...
+INFO: [Memdata 28-144] Successfully populated the BRAM INIT strings from the following elf files: c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_microblaze_riscv_0_0/data/riscv_bootloop.elf 
+INFO: [Project 1-1687] 54 scoped IP constraints or related sub-commands were skipped due to synthesis logic optimizations usually triggered by constant connectivity or unconnected output pins. To review the skipped constraints and messages, run the command 'set_param netlist.IPMsgFiltering false' before opening the design.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 1630.125 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 398 instances were transformed.
+  IOBUFDS_INTERMDISABLE => IOBUFDS_INTERMDISABLE (IBUFDS_INTERMDISABLE_INT(x2), INV, OBUFTDS(x2)): 2 instances
+  IOBUF_INTERMDISABLE => IOBUF_INTERMDISABLE (IBUF_INTERMDISABLE, OBUFT): 16 instances
+  LUT6_2 => LUT6_2 (LUT5, LUT6): 48 instances
+  OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 1 instance 
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 327 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 4 instances
+
+31 Infos, 57 Warnings, 2 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1630.125 ; gain = 1057.824
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1630.125 ; gain = 0.000
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 209788170
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1630.125 ; gain = 0.000
+
+Starting Logic Optimization Task
+
+Phase 1 Initialization
+
+Phase 1.1 Core Generation And Design Setup
+Phase 1.1 Core Generation And Design Setup | Checksum: 209788170
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.045 . Memory (MB): peak = 2053.094 ; gain = 0.000
+
+Phase 1.2 Setup Constraints And Sort Netlist
+Phase 1.2 Setup Constraints And Sort Netlist | Checksum: 209788170
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.075 . Memory (MB): peak = 2053.094 ; gain = 0.000
+Phase 1 Initialization | Checksum: 209788170
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.081 . Memory (MB): peak = 2053.094 ; gain = 0.000
+
+Phase 2 Timer Update And Timing Data Collection
+
+Phase 2.1 Timer Update
+Phase 2.1 Timer Update | Checksum: 209788170
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.678 . Memory (MB): peak = 2053.094 ; gain = 0.000
+
+Phase 2.2 Timing Data Collection
+Phase 2.2 Timing Data Collection | Checksum: 209788170
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.755 . Memory (MB): peak = 2053.094 ; gain = 0.000
+Phase 2 Timer Update And Timing Data Collection | Checksum: 209788170
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.761 . Memory (MB): peak = 2053.094 ; gain = 0.000
+
+Phase 3 Retarget
+INFO: [Opt 31-1851] Number of loadless carry chains removed were: 0
+INFO: [Opt 31-1834] Total Chains To Be Transformed Were: 0 AND Number of Transformed insts Created are: 0
+INFO: [Opt 31-1566] Pulled 11 inverters resulting in an inversion of 102 pins
+INFO: [Opt 31-138] Pushed 29 inverter(s) to 141 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 3 Retarget | Checksum: 22fa52dff
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2053.094 ; gain = 0.000
+Retarget | Checksum: 22fa52dff
+INFO: [Opt 31-389] Phase Retarget created 189 cells and removed 349 cells
+INFO: [Opt 31-1021] In phase Retarget, 92 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 4 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 4 Constant propagation | Checksum: 1c2d146eb
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2053.094 ; gain = 0.000
+Constant propagation | Checksum: 1c2d146eb
+INFO: [Opt 31-389] Phase Constant propagation created 73 cells and removed 283 cells
+INFO: [Opt 31-1021] In phase Constant propagation, 56 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 5 Sweep
+INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
+Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 2053.094 ; gain = 0.000
+INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
+Done building netlist checker database: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.017 . Memory (MB): peak = 2053.094 ; gain = 0.000
+Phase 5 Sweep | Checksum: 2556bf1bc
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2053.094 ; gain = 0.000
+Sweep | Checksum: 2556bf1bc
+INFO: [Opt 31-389] Phase Sweep created 1 cells and removed 938 cells
+INFO: [Opt 31-1021] In phase Sweep, 76 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 6 BUFG optimization
+INFO: [Opt 31-194] Inserted BUFG prueba_i/mdm_1/U0/Use_E2.BSCAN_I/tck_BUFG_inst to drive 51 load(s) on clock net prueba_i/mdm_1/U0/Use_E2.BSCAN_I/tck_BUFG
+INFO: [Opt 31-193] Inserted 1 BUFG(s) on clock nets
+Phase 6 BUFG optimization | Checksum: 1a4121ae8
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2053.094 ; gain = 0.000
+BUFG optimization | Checksum: 1a4121ae8
+INFO: [Opt 31-662] Phase BUFG optimization created 1 cells of which 1 are BUFGs and removed 0 cells.
+
+Phase 7 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 7 Shift Register Optimization | Checksum: 1a4121ae8
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2053.094 ; gain = 0.000
+Shift Register Optimization | Checksum: 1a4121ae8
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 8 Post Processing Netlist
+Phase 8 Post Processing Netlist | Checksum: 1be510b96
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2053.094 ; gain = 0.000
+Post Processing Netlist | Checksum: 1be510b96
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+INFO: [Opt 31-1021] In phase Post Processing Netlist, 56 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 9 Finalization
+
+Phase 9.1 Finalizing Design Cores and Updating Shapes
+Phase 9.1 Finalizing Design Cores and Updating Shapes | Checksum: 2a1c65cf3
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 2053.094 ; gain = 0.000
+
+Phase 9.2 Verifying Netlist Connectivity
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.057 . Memory (MB): peak = 2053.094 ; gain = 0.000
+Phase 9.2 Verifying Netlist Connectivity | Checksum: 2a1c65cf3
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2053.094 ; gain = 0.000
+Phase 9 Finalization | Checksum: 2a1c65cf3
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2053.094 ; gain = 0.000
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |             189  |             349  |                                             92  |
+|  Constant propagation         |              73  |             283  |                                             56  |
+|  Sweep                        |               1  |             938  |                                             76  |
+|  BUFG optimization            |               1  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                             56  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Ending Logic Optimization Task | Checksum: 2a1c65cf3
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2053.094 ; gain = 0.000
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 4 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 4 newly gated: 0 Total Ports: 8
+Ending PowerOpt Patch Enables Task | Checksum: 1a1864b89
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.126 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Ending Power Optimization Task | Checksum: 1a1864b89
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:04 . Memory (MB): peak = 2247.289 ; gain = 194.195
+
+Starting Final Cleanup Task
+
+Starting Logic Optimization Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Logic Optimization Task | Checksum: 22b97103a
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Ending Final Cleanup Task | Checksum: 22b97103a
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Ending Netlist Obfuscation Task | Checksum: 22b97103a
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2247.289 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+65 Infos, 57 Warnings, 2 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:26 ; elapsed = 00:00:20 . Memory (MB): peak = 2247.289 ; gain = 617.164
+INFO: [Vivado 12-24828] Executing command : report_drc -file prueba_wrapper_drc_opted.rpt -pb prueba_wrapper_drc_opted.pb -rpx prueba_wrapper_drc_opted.rpx
+Command: report_drc -file prueba_wrapper_drc_opted.rpt -pb prueba_wrapper_drc_opted.pb -rpx prueba_wrapper_drc_opted.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/ultima/project_2/project_2.runs/impl_1/prueba_wrapper_drc_opted.rpt.
+report_drc completed successfully
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Wrote PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.034 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.066 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.056 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.112 . Memory (MB): peak = 2247.289 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/ultima/project_2/project_2.runs/impl_1/prueba_wrapper_opt.dcp' has been generated.
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t'
+INFO: [Common 17-83] Releasing license: Implementation
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 2 CPUs
+
+Starting Placer Task
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 19e005fc2
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 153e6b7f1
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: 29d75611c
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: 29d75611c
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Phase 1 Placer Initialization | Checksum: 29d75611c
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 2 Global Placement
+
+Phase 2.1 Floorplanning
+Phase 2.1 Floorplanning | Checksum: 32944a05d
+
+Time (s): cpu = 00:00:12 ; elapsed = 00:00:08 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 2.2 Update Timing before SLR Path Opt
+Phase 2.2 Update Timing before SLR Path Opt | Checksum: 2621818e5
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:09 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 2.3 Post-Processing in Floorplanning
+Phase 2.3 Post-Processing in Floorplanning | Checksum: 2621818e5
+
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:09 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 2.4 Global Place Phase1
+Phase 2.4 Global Place Phase1 | Checksum: 3847777aa
+
+Time (s): cpu = 00:00:26 ; elapsed = 00:00:18 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 2.5 Global Place Phase2
+
+Phase 2.5.1 UpdateTiming Before Physical Synthesis
+Phase 2.5.1 UpdateTiming Before Physical Synthesis | Checksum: 3847777aa
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:19 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 2.5.2 Physical Synthesis In Placer
+INFO: [Physopt 32-1035] Found 0 LUTNM shape to break, 864 LUT instances to create LUTNM shape
+INFO: [Physopt 32-1044] Break lutnm for timing: one critical 0, two critical 0, total 0, new lutff created 0
+INFO: [Physopt 32-1138] End 1 Pass. Optimized 371 nets or LUTs. Breaked 0 LUT, combined 371 existing LUTs and moved 0 existing LUT
+INFO: [Physopt 32-65] No nets found for high-fanout optimization.
+INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-670] No setup violation found.  DSP Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  Shift Register to Pipeline Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  Shift Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  BRAM Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  URAM Register Optimization was not performed.
+INFO: [Physopt 32-949] No candidate nets found for dynamic/static region interface net replication
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization                                     |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  LUT Combining                                    |            0  |            371  |                   371  |           0  |           1  |  00:00:00  |
+|  Retime                                           |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Very High Fanout                                 |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  DSP Register                                     |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Shift Register to Pipeline                       |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Shift Register                                   |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  BRAM Register                                    |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  URAM Register                                    |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Dynamic/Static Region Interface Net Replication  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Total                                            |            0  |            371  |                   371  |           0  |           4  |  00:00:01  |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Phase 2.5.2 Physical Synthesis In Placer | Checksum: 2a50a16a4
+
+Time (s): cpu = 00:00:31 ; elapsed = 00:00:21 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Phase 2.5 Global Place Phase2 | Checksum: 345387fc0
+
+Time (s): cpu = 00:00:32 ; elapsed = 00:00:22 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Phase 2 Global Placement | Checksum: 345387fc0
+
+Time (s): cpu = 00:00:32 ; elapsed = 00:00:22 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 2c5e74237
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:23 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 1da247558
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:26 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 1cd39a871
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:26 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 29bc5b1c9
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:26 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 3.5 Small Shape Detail Placement
+Phase 3.5 Small Shape Detail Placement | Checksum: 1fe6bbfba
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:31 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 3.6 Re-assign LUT pins
+Phase 3.6 Re-assign LUT pins | Checksum: 1fa52f967
+
+Time (s): cpu = 00:00:45 ; elapsed = 00:00:32 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 3.7 Pipeline Register Optimization
+Phase 3.7 Pipeline Register Optimization | Checksum: 29a67093a
+
+Time (s): cpu = 00:00:45 ; elapsed = 00:00:32 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Phase 3 Detail Placement | Checksum: 29a67093a
+
+Time (s): cpu = 00:00:45 ; elapsed = 00:00:32 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 2540f5449
+
+Phase 4.1.1.1 BUFG Insertion
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 2 CPUs
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=1.317 | TNS=0.000 |
+Phase 1 Physical Synthesis Initialization | Checksum: 1820c9164
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.487 . Memory (MB): peak = 2247.289 ; gain = 0.000
+INFO: [Place 46-56] BUFG insertion identified 0 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 0, Skipped due to Timing Degradation: 0, Skipped due to netlist editing failed: 0.
+Ending Physical Synthesis Task | Checksum: 2d04f8bde
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.634 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Phase 4.1.1.1 BUFG Insertion | Checksum: 2540f5449
+
+Time (s): cpu = 00:00:53 ; elapsed = 00:00:37 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 4.1.1.2 Post Placement Timing Optimization
+INFO: [Place 30-746] Post Placement Timing Summary WNS=1.317. For the most accurate timing information please run report_timing.
+Phase 4.1.1.2 Post Placement Timing Optimization | Checksum: 24d2ecb0d
+
+Time (s): cpu = 00:00:53 ; elapsed = 00:00:37 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Time (s): cpu = 00:00:53 ; elapsed = 00:00:37 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Phase 4.1 Post Commit Optimization | Checksum: 24d2ecb0d
+
+Time (s): cpu = 00:00:53 ; elapsed = 00:00:37 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 24d2ecb0d
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:37 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 4.3 Placer Reporting
+
+Phase 4.3.1 Print Estimated Congestion
+INFO: [Place 30-612] Post-Placement Estimated Congestion 
+ ____________________________________________________
+|           | Global Congestion | Short Congestion  |
+| Direction | Region Size       | Region Size       |
+|___________|___________________|___________________|
+|      North|                1x1|                1x1|
+|___________|___________________|___________________|
+|      South|                1x1|                2x2|
+|___________|___________________|___________________|
+|       East|                1x1|                2x2|
+|___________|___________________|___________________|
+|       West|                1x1|                1x1|
+|___________|___________________|___________________|
+
+Phase 4.3.1 Print Estimated Congestion | Checksum: 24d2ecb0d
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:37 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Phase 4.3 Placer Reporting | Checksum: 24d2ecb0d
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:38 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Phase 4.4 Final Placement Cleanup
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 2247.289 ; gain = 0.000
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:38 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 21fadafe6
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:38 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Ending Placer Task | Checksum: 21537c03f
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:38 . Memory (MB): peak = 2247.289 ; gain = 0.000
+100 Infos, 57 Warnings, 2 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:00:59 ; elapsed = 00:00:41 . Memory (MB): peak = 2247.289 ; gain = 0.000
+INFO: [Vivado 12-24838] Running report commands "report_control_sets, report_io, report_utilization" in parallel.
+Running report generation with 2 threads.
+INFO: [Vivado 12-24828] Executing command : report_io -file prueba_wrapper_io_placed.rpt
+report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.082 . Memory (MB): peak = 2247.289 ; gain = 0.000
+INFO: [Vivado 12-24828] Executing command : report_control_sets -verbose -file prueba_wrapper_control_sets_placed.rpt
+report_control_sets: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.077 . Memory (MB): peak = 2247.289 ; gain = 0.000
+INFO: [Vivado 12-24828] Executing command : report_utilization -file prueba_wrapper_utilization_placed.rpt -pb prueba_wrapper_utilization_placed.pb
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.112 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Wrote PlaceDB: Time (s): cpu = 00:00:05 ; elapsed = 00:00:02 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.049 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.039 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:05 ; elapsed = 00:00:02 . Memory (MB): peak = 2247.289 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/ultima/project_2/project_2.runs/impl_1/prueba_wrapper_placed.dcp' has been generated.
+Command: phys_opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t'
+
+Starting Initial Update Timing Task
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 2247.289 ; gain = 0.000
+INFO: [Vivado_Tcl 4-2279] Estimated Timing Summary | WNS= 1.317 | TNS= 0.000 | 
+INFO: [Vivado_Tcl 4-383] Design worst setup slack (WNS) is greater than or equal to 0.000 ns. All physical synthesis setup optimizations will be skipped.
+INFO: [Vivado_Tcl 4-232] No setup violation found. The netlist was not modified.
+INFO: [Common 17-83] Releasing license: Implementation
+111 Infos, 57 Warnings, 2 Critical Warnings and 0 Errors encountered.
+phys_opt_design completed successfully
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.090 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Wrote PlaceDB: Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.033 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2247.289 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 2247.289 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/ultima/project_2/project_2.runs/impl_1/prueba_wrapper_physopt.dcp' has been generated.
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t'
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 2 CPUs
+
+Phase 1 Build RT Design
+Checksum: PlaceDB: adc713c7 ConstDB: 0 ShapeSum: b59e4ce2 RouteDB: b1d25f96
+Post Restoration Checksum: NetGraph: cb30ea57 | NumContArr: fd2cc00b | Constraints: c2a8fa9d | Timing: c2a8fa9d
+Phase 1 Build RT Design | Checksum: 34daf9f9c
+
+Time (s): cpu = 00:00:46 ; elapsed = 00:00:40 . Memory (MB): peak = 2348.699 ; gain = 101.410
+
+Phase 2 Router Initialization
+
+Phase 2.1 Fix Topology Constraints
+Phase 2.1 Fix Topology Constraints | Checksum: 34daf9f9c
+
+Time (s): cpu = 00:00:46 ; elapsed = 00:00:40 . Memory (MB): peak = 2348.855 ; gain = 101.566
+
+Phase 2.2 Pre Route Cleanup
+Phase 2.2 Pre Route Cleanup | Checksum: 34daf9f9c
+
+Time (s): cpu = 00:00:46 ; elapsed = 00:00:40 . Memory (MB): peak = 2348.855 ; gain = 101.566
+ Number of Nodes with overlaps = 0
+
+Phase 2.3 Update Timing
+Phase 2.3 Update Timing | Checksum: 244e99cc3
+
+Time (s): cpu = 00:00:55 ; elapsed = 00:00:45 . Memory (MB): peak = 2406.773 ; gain = 159.484
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.316  | TNS=0.000  | WHS=-2.463 | THS=-467.700|
+
+
+Phase 2.4 Update Timing for Bus Skew
+
+Phase 2.4.1 Update Timing
+Phase 2.4.1 Update Timing | Checksum: 26e76107a
+
+Time (s): cpu = 00:01:01 ; elapsed = 00:00:49 . Memory (MB): peak = 2406.773 ; gain = 159.484
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.316  | TNS=0.000  | WHS=-5.187 | THS=-67.085|
+
+Phase 2.4 Update Timing for Bus Skew | Checksum: 19b2b6c14
+
+Time (s): cpu = 00:01:01 ; elapsed = 00:00:49 . Memory (MB): peak = 2406.773 ; gain = 159.484
+
+Phase 2.5 Soft Constraint Pins - Fast Budgeting
+Phase 2.5 Soft Constraint Pins - Fast Budgeting | Checksum: 19b2b6c14
+
+Time (s): cpu = 00:01:01 ; elapsed = 00:00:49 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0.00204552 %
+  Global Horizontal Routing Utilization  = 0.0019892 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 17050
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 17050
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 1
+
+Phase 2 Router Initialization | Checksum: 20699afd2
+
+Time (s): cpu = 00:01:02 ; elapsed = 00:00:50 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 3 Global Routing
+Phase 3 Global Routing | Checksum: 20699afd2
+
+Time (s): cpu = 00:01:02 ; elapsed = 00:00:50 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 4 Initial Routing
+
+Phase 4.1 Initial Net Routing Pass
+Phase 4.1 Initial Net Routing Pass | Checksum: 28f355201
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:52 . Memory (MB): peak = 2437.617 ; gain = 190.328
+Phase 4 Initial Routing | Checksum: 28f355201
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:52 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 5 Rip-up And Reroute
+
+Phase 5.1 Global Iteration 0
+ Number of Nodes with overlaps = 1688
+ Number of Nodes with overlaps = 197
+ Number of Nodes with overlaps = 55
+ Number of Nodes with overlaps = 15
+ Number of Nodes with overlaps = 6
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.301  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 5.1 Global Iteration 0 | Checksum: 2a6c824ff
+
+Time (s): cpu = 00:01:21 ; elapsed = 00:01:03 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 5.2 Global Iteration 1
+ Number of Nodes with overlaps = 10
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.301  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 5.2 Global Iteration 1 | Checksum: 2759b8be1
+
+Time (s): cpu = 00:01:22 ; elapsed = 00:01:04 . Memory (MB): peak = 2437.617 ; gain = 190.328
+Phase 5 Rip-up And Reroute | Checksum: 2759b8be1
+
+Time (s): cpu = 00:01:22 ; elapsed = 00:01:04 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 6 Delay and Skew Optimization
+
+Phase 6.1 Delay CleanUp
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 327a7a3b1
+
+Time (s): cpu = 00:01:23 ; elapsed = 00:01:04 . Memory (MB): peak = 2437.617 ; gain = 190.328
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.316  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 6.1 Delay CleanUp | Checksum: 3238ed11e
+
+Time (s): cpu = 00:01:23 ; elapsed = 00:01:04 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 6.2 Clock Skew Optimization
+Phase 6.2 Clock Skew Optimization | Checksum: 3238ed11e
+
+Time (s): cpu = 00:01:23 ; elapsed = 00:01:04 . Memory (MB): peak = 2437.617 ; gain = 190.328
+Phase 6 Delay and Skew Optimization | Checksum: 3238ed11e
+
+Time (s): cpu = 00:01:23 ; elapsed = 00:01:04 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 7 Post Hold Fix
+
+Phase 7.1 Hold Fix Iter
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.316  | TNS=0.000  | WHS=-0.053 | THS=-0.072 |
+
+Phase 7.1 Hold Fix Iter | Checksum: 1e14fdf0d
+
+Time (s): cpu = 00:01:25 ; elapsed = 00:01:05 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 7.2 Non Free Resource Hold Fix Iter
+Phase 7.2 Non Free Resource Hold Fix Iter | Checksum: 1f5635da7
+
+Time (s): cpu = 00:01:25 ; elapsed = 00:01:05 . Memory (MB): peak = 2437.617 ; gain = 190.328
+Phase 7 Post Hold Fix | Checksum: 1f5635da7
+
+Time (s): cpu = 00:01:25 ; elapsed = 00:01:05 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 8 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 2.8626 %
+  Global Horizontal Routing Utilization  = 3.6369 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 8 Route finalize | Checksum: 1f5635da7
+
+Time (s): cpu = 00:01:25 ; elapsed = 00:01:06 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 9 Verifying routed nets
+
+ Verification completed successfully
+Phase 9 Verifying routed nets | Checksum: 1f5635da7
+
+Time (s): cpu = 00:01:25 ; elapsed = 00:01:06 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 10 Depositing Routes
+Phase 10 Depositing Routes | Checksum: 278e81204
+
+Time (s): cpu = 00:01:27 ; elapsed = 00:01:07 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 11 Post Process Routing
+Phase 11 Post Process Routing | Checksum: 278e81204
+
+Time (s): cpu = 00:01:27 ; elapsed = 00:01:07 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Phase 12 Post Router Timing
+
+Phase 12.1 Update Timing
+Phase 12.1 Update Timing | Checksum: 278e81204
+
+Time (s): cpu = 00:01:28 ; elapsed = 00:01:07 . Memory (MB): peak = 2437.617 ; gain = 190.328
+INFO: [Route 35-57] Estimated Timing Summary | WNS=1.316  | TNS=0.000  | WHS=0.051  | THS=0.000  |
+
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 12 Post Router Timing | Checksum: 278e81204
+
+Time (s): cpu = 00:01:28 ; elapsed = 00:01:08 . Memory (MB): peak = 2437.617 ; gain = 190.328
+Total Elapsed time in route_design: 67.504 secs
+
+Phase 13 Post-Route Event Processing
+Phase 13 Post-Route Event Processing | Checksum: 1cd1cd20d
+
+Time (s): cpu = 00:01:28 ; elapsed = 00:01:08 . Memory (MB): peak = 2437.617 ; gain = 190.328
+INFO: [Route 35-16] Router Completed Successfully
+Ending Routing Task | Checksum: 1cd1cd20d
+
+Time (s): cpu = 00:01:28 ; elapsed = 00:01:08 . Memory (MB): peak = 2437.617 ; gain = 190.328
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+125 Infos, 57 Warnings, 2 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:01:29 ; elapsed = 00:01:08 . Memory (MB): peak = 2437.617 ; gain = 190.328
+INFO: [Vivado 12-24828] Executing command : report_drc -file prueba_wrapper_drc_routed.rpt -pb prueba_wrapper_drc_routed.pb -rpx prueba_wrapper_drc_routed.rpx
+Command: report_drc -file prueba_wrapper_drc_routed.rpt -pb prueba_wrapper_drc_routed.pb -rpx prueba_wrapper_drc_routed.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/ultima/project_2/project_2.runs/impl_1/prueba_wrapper_drc_routed.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:00:10 ; elapsed = 00:00:05 . Memory (MB): peak = 2437.617 ; gain = 0.000
+INFO: [Vivado 12-24828] Executing command : report_methodology -file prueba_wrapper_methodology_drc_routed.rpt -pb prueba_wrapper_methodology_drc_routed.pb -rpx prueba_wrapper_methodology_drc_routed.rpx
+Command: report_methodology -file prueba_wrapper_methodology_drc_routed.rpt -pb prueba_wrapper_methodology_drc_routed.pb -rpx prueba_wrapper_methodology_drc_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [DRC 23-133] Running Methodology with 2 threads
+INFO: [Vivado_Tcl 2-1520] The results of Report Methodology are in file C:/ultima/project_2/project_2.runs/impl_1/prueba_wrapper_methodology_drc_routed.rpt.
+report_methodology completed successfully
+report_drc: Time (s): cpu = 00:00:17 ; elapsed = 00:00:09 . Memory (MB): peak = 2471.652 ; gain = 34.035
+INFO: [Vivado 12-24828] Executing command : report_timing_summary -max_paths 10 -routable_nets -report_unconstrained -file prueba_wrapper_timing_summary_routed.rpt -pb prueba_wrapper_timing_summary_routed.pb -rpx prueba_wrapper_timing_summary_routed.rpx -warn_on_violation 
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[1].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[5].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[3].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[4].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[7].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[6].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[8].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[9].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[4].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[2].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[0].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[5].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[1].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[8].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[7].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-469] The REFCLK pin of IDELAYCTRL prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_iodelay_ctrl/u_idelayctrl_200 has a clock period of 10.000 ns (frequency 100.000 Mhz) but IDELAYE2 prueba_i/mig_7series_0/u_prueba_mig_7series_0_1_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[6].iserdes_dq_.idelay_dq.idelaye2 has REFCLK_FREQUENCY of 200.000 Mhz (period 5.000 ns). The IDELAYCTRL REFCLK pin frequency must match the IDELAYE2 REFCLK_FREQUENCY property.
+Resolution: Check that the IDELAYCTRL REFCLK pin is receiving a clock and that the period of the clock matches the REFCLK_FREQUENCY property of the <IDELAYE2/ODELAYE2>.
+CRITICAL WARNING: [Timing 38-282] The design failed to meet the timing requirements. Please see the timing summary report for details on the timing violations.
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+INFO: [Vivado 12-24838] Running report commands "report_incremental_reuse, report_route_status" in parallel.
+Running report generation with 2 threads.
+INFO: [Vivado 12-24828] Executing command : report_incremental_reuse -file prueba_wrapper_incremental_reuse_routed.rpt
+INFO: [Vivado_Tcl 4-1062] Incremental flow is disabled. No incremental reuse Info to report.
+INFO: [Vivado 12-24828] Executing command : report_route_status -file prueba_wrapper_route_status.rpt -pb prueba_wrapper_route_status.pb
+INFO: [Vivado 12-24828] Executing command : report_power -file prueba_wrapper_power_routed.rpt -pb prueba_wrapper_power_summary_routed.pb -rpx prueba_wrapper_power_routed.rpx
+Command: report_power -file prueba_wrapper_power_routed.rpt -pb prueba_wrapper_power_summary_routed.pb -rpx prueba_wrapper_power_routed.rpx
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+WARNING: [Power 33-332] Found switching activity that implies high-fanout reset nets being asserted for excessive periods of time which may result in inaccurate power analysis.
+Resolution: To review and fix problems, please run Power Constraints Advisor in the GUI from Tools > Power Constraints Advisor or run report_power with the -advisory option to generate a text report.
+142 Infos, 59 Warnings, 19 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+INFO: [Vivado 12-24828] Executing command : report_clock_utilization -file prueba_wrapper_clock_utilization_routed.rpt
+INFO: [Vivado 12-24828] Executing command : report_bus_skew -warn_on_violation -file prueba_wrapper_bus_skew_routed.rpt -pb prueba_wrapper_bus_skew_routed.pb -rpx prueba_wrapper_bus_skew_routed.rpx
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+generate_parallel_reports: Time (s): cpu = 00:00:41 ; elapsed = 00:00:24 . Memory (MB): peak = 2518.469 ; gain = 80.852
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.093 . Memory (MB): peak = 2548.379 ; gain = 11.996
+Wrote PlaceDB: Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 2554.914 ; gain = 18.414
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2554.914 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.230 . Memory (MB): peak = 2554.914 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.032 . Memory (MB): peak = 2554.914 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2554.914 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:05 ; elapsed = 00:00:02 . Memory (MB): peak = 2554.914 ; gain = 18.414
+INFO: [Common 17-1381] The checkpoint 'C:/ultima/project_2/project_2.runs/impl_1/prueba_wrapper_routed.dcp' has been generated.
+INFO: [Common 17-206] Exiting Vivado at Fri Jun  5 12:33:23 2026...

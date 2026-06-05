@@ -58,7 +58,6 @@ if {$::dispatch::connected} {
 OPTRACE "prueba_clk_wiz_1_0_synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 3
 set_param general.usePosixSpawnForFork 1
-set_param bd.open.in_stealth_mode 1
 set_param project.vivado.isBlockSynthRun true
 set_msg_config -msgmgr_mode ooc_run
 OPTRACE "Creating in-memory project" START { }
@@ -70,7 +69,7 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir C:/ultima/project_2/project_2.cache/wt [current_project]
 set_property parent.project_path C:/ultima/project_2/project_2.xpr [current_project]
-set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
+set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:nexys-a7-100t:part0:1.3 [current_project]
@@ -78,7 +77,7 @@ set_property ip_output_repo c:/ultima/project_2/project_2.cache/ip [current_proj
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet c:/ultima/project_2/project_2.srcs/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0.xci
+read_ip -quiet C:/ultima/project_2/project_2.srcs/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0.xci
 set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0_board.xdc]
 set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0.xdc]
 set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0_ooc.xdc]
