@@ -97,6 +97,7 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
+set_msg_config -id {HDL-1065} -limit 10000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -106,6 +107,7 @@ set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 3
   set_param general.usePosixSpawnForFork 1
+  set_param bd.open.in_stealth_mode 2
   set_param runs.launchOptions { -jobs 4  }
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a100tcsg324-1
@@ -116,6 +118,8 @@ OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
   set_property webtalk.parent_dir C:/ultima/project_2/project_2.cache/wt [current_project]
   set_property parent.project_path C:/ultima/project_2/project_2.xpr [current_project]
+  set_property ip_repo_paths C:/vga_ip/ip_def [current_project]
+  update_ip_catalog
   set_property ip_output_repo C:/ultima/project_2/project_2.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]

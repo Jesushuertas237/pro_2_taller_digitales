@@ -45,4 +45,10 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==prueba_mig_
 # IP: bd/prueba/ip/prueba_rst_mig_7series_0_81M_0/prueba_rst_mig_7series_0_81M_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==prueba_rst_mig_7series_0_81M_0 || ORIG_REF_NAME==prueba_rst_mig_7series_0_81M_0} -quiet] -quiet
 
+# IP: bd/prueba/ip/prueba_top_vga_0_0/prueba_top_vga_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==prueba_top_vga_0_0 || ORIG_REF_NAME==prueba_top_vga_0_0} -quiet] -quiet
+
+# IP: bd/prueba/ip/prueba_const_0_0/prueba_const_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==prueba_const_0_0 || ORIG_REF_NAME==prueba_const_0_0} -quiet] -quiet
+
 # XDC: c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/prueba_ooc.xdc

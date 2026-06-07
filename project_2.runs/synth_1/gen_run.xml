@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1780693074" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/prueba_wrapper.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1780862845" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/prueba_wrapper.dcp">
   <File Type="PA-TCL" Name="prueba_wrapper.tcl"/>
   <File Type="REPORTS-TCL" Name="prueba_wrapper_reports.tcl"/>
   <File Type="RDS-RDS" Name="prueba_wrapper.vds"/>
@@ -78,4 +78,6 @@
   <BlockFileSet Type="BlockSrcs" Name="prueba_axi_gpio_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="prueba_rst_mig_7series_0_81M_0"/>
   <BlockFileSet Type="BlockSrcs" Name="prueba_mig_7series_0_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="prueba_top_vga_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="prueba_axi_smc_0"/>
 </GenRun>
