@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-//Date        : Fri Jun  5 14:50:47 2026
+//Date        : Sun Jun  7 14:07:19 2026
 //Host        : jesus running 64-bit major release  (build 9200)
 //Command     : generate_target prueba_wrapper.bd
 //Design      : prueba_wrapper
@@ -25,6 +25,11 @@ module prueba_wrapper
     DDR2_0_odt,
     DDR2_0_ras_n,
     DDR2_0_we_n,
+    VGA_B_0,
+    VGA_G_0,
+    VGA_HS_0,
+    VGA_R_0,
+    VGA_VS_0,
     led_16bits_tri_o,
     reset,
     sys_clock);
@@ -42,6 +47,11 @@ module prueba_wrapper
   output [0:0]DDR2_0_odt;
   output DDR2_0_ras_n;
   output DDR2_0_we_n;
+  output [3:0]VGA_B_0;
+  output [3:0]VGA_G_0;
+  output VGA_HS_0;
+  output [3:0]VGA_R_0;
+  output VGA_VS_0;
   output [15:0]led_16bits_tri_o;
   input reset;
   input sys_clock;
@@ -60,6 +70,11 @@ module prueba_wrapper
   wire [0:0]DDR2_0_odt;
   wire DDR2_0_ras_n;
   wire DDR2_0_we_n;
+  wire [3:0]VGA_B_0;
+  wire [3:0]VGA_G_0;
+  wire VGA_HS_0;
+  wire [3:0]VGA_R_0;
+  wire VGA_VS_0;
   wire [15:0]led_16bits_tri_o;
   wire reset;
   wire sys_clock;
@@ -79,6 +94,11 @@ module prueba_wrapper
         .DDR2_0_odt(DDR2_0_odt),
         .DDR2_0_ras_n(DDR2_0_ras_n),
         .DDR2_0_we_n(DDR2_0_we_n),
+        .VGA_B_0(VGA_B_0),
+        .VGA_G_0(VGA_G_0),
+        .VGA_HS_0(VGA_HS_0),
+        .VGA_R_0(VGA_R_0),
+        .VGA_VS_0(VGA_VS_0),
         .led_16bits_tri_o(led_16bits_tri_o),
         .reset(reset),
         .sys_clock(sys_clock));

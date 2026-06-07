@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="prueba_mig_7series_0_1_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1780683946">
-  <File Type="PA-TCL" Name="prueba_mig_7series_0_1.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="prueba_mig_7series_0_1_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="prueba_mig_7series_0_1_reports.tcl"/>
-  <File Type="RDS-RDS" Name="prueba_mig_7series_0_1.vds"/>
   <File Type="RDS-UTIL" Name="prueba_mig_7series_0_1_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="prueba_mig_7series_0_1_utilization_synth.pb"/>
+  <File Type="PA-TCL" Name="prueba_mig_7series_0_1.tcl"/>
+  <File Type="RDS-RDS" Name="prueba_mig_7series_0_1.vds"/>
   <File Type="RDS-DCP" Name="prueba_mig_7series_0_1.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="prueba_mig_7series_0_1_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="prueba_mig_7series_0_1_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/prueba_mig_7series_0_1" RelGenDir="$PGENDIR/prueba_mig_7series_0_1">
     <File Path="$PSRCDIR/sources_1/bd/prueba/ip/prueba_mig_7series_0_1/prueba_mig_7series_0_1.xci">
       <FileInfo>
@@ -50,9 +47,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

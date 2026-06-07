@@ -58,6 +58,8 @@ if {$::dispatch::connected} {
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 3
 set_param general.usePosixSpawnForFork 1
+set_param bd.open.in_stealth_mode 2
+set_msg_config -id {HDL-1065} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tcsg324-1
 
@@ -71,6 +73,8 @@ set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:nexys-a7-100t:part0:1.3 [current_project]
+set_property ip_repo_paths c:/vga_ip/ip_def [current_project]
+update_ip_catalog
 set_property ip_output_repo c:/ultima/project_2/project_2.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
@@ -120,6 +124,12 @@ set_property used_in_implementation false [get_files -all c:/ultima/project_2/pr
 set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_28/bd_3e18_m01awn_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_29/bd_3e18_m01wn_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_30/bd_3e18_m01bn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_32/bd_3e18_m02s2a_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_33/bd_3e18_m02arn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_34/bd_3e18_m02rn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_35/bd_3e18_m02awn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_36/bd_3e18_m02wn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/bd_0/ip/ip_37/bd_3e18_m02bn_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_axi_smc_0/smartconnect.xdc]
 set_property used_in_implementation false [get_files -all c:/ultima/project_2/project_2.gen/sources_1/bd/prueba/ip/prueba_mig_7series_0_1/prueba_mig_7series_0_1/user_design/constraints/prueba_mig_7series_0_1.xdc]

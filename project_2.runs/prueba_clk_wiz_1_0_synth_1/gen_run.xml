@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="prueba_clk_wiz_1_0_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1780679367">
+<GenRun Id="prueba_clk_wiz_1_0_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1780860105">
   <File Type="PA-TCL" Name="prueba_clk_wiz_1_0.tcl"/>
   <File Type="REPORTS-TCL" Name="prueba_clk_wiz_1_0_reports.tcl"/>
   <File Type="RDS-RDS" Name="prueba_clk_wiz_1_0.vds"/>

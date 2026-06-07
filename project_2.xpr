@@ -48,6 +48,7 @@
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
+    <Option Name="IPRepoPath" Val="$PPRDIR/../../vga_ip/ip_def"/>
     <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
     <Option Name="IPDefaultOutputPath" Val="$PGENDIR/sources_1"/>
     <Option Name="IPCachePermission" Val="read"/>
@@ -100,6 +101,9 @@
         <CompFileExtendedInfo CompFileName="prueba.bd" FileRelPathName="ip/prueba_axi_gpio_0_0/prueba_axi_gpio_0_0.xci">
           <Proxy FileSetName="prueba_axi_gpio_0_0"/>
         </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="prueba.bd" FileRelPathName="ip/prueba_axi_smc_0/prueba_axi_smc_0.xci">
+          <Proxy FileSetName="prueba_axi_smc_0"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="prueba.bd" FileRelPathName="ip/prueba_clk_wiz_1_0/prueba_clk_wiz_1_0.xci">
           <Proxy FileSetName="prueba_clk_wiz_1_0"/>
         </CompFileExtendedInfo>
@@ -132,6 +136,9 @@
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="prueba.bd" FileRelPathName="ip/prueba_rst_mig_7series_0_81M_0/prueba_rst_mig_7series_0_81M_0.xci">
           <Proxy FileSetName="prueba_rst_mig_7series_0_81M_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="prueba.bd" FileRelPathName="ip/prueba_top_vga_0_0/prueba_top_vga_0_0.xci">
+          <Proxy FileSetName="prueba_top_vga_0_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PGENDIR/sources_1/bd/prueba/hdl/prueba_wrapper.v">
@@ -269,6 +276,18 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
+    <FileSet Name="prueba_top_vga_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/prueba_top_vga_0_0" RelGenDir="$PGENDIR/prueba_top_vga_0_0">
+      <Config>
+        <Option Name="TopModule" Val="prueba_top_vga_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="prueba_axi_smc_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/prueba_axi_smc_0" RelGenDir="$PGENDIR/prueba_axi_smc_0">
+      <Config>
+        <Option Name="TopModule" Val="prueba_axi_smc_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
   </FileSets>
   <Simulators>
     <Simulator Name="XSim">
@@ -391,9 +410,7 @@
     </Run>
     <Run Id="prueba_axi_gpio_0_0_synth_1" Type="Ft3:Synth" SrcSet="prueba_axi_gpio_0_0" Part="xc7a100tcsg324-1" ConstrsSet="prueba_axi_gpio_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/prueba_axi_gpio_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/prueba_axi_gpio_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/prueba_axi_gpio_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -403,9 +420,7 @@
     </Run>
     <Run Id="prueba_rst_mig_7series_0_81M_0_synth_1" Type="Ft3:Synth" SrcSet="prueba_rst_mig_7series_0_81M_0" Part="xc7a100tcsg324-1" ConstrsSet="prueba_rst_mig_7series_0_81M_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/prueba_rst_mig_7series_0_81M_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/prueba_rst_mig_7series_0_81M_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/prueba_rst_mig_7series_0_81M_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -415,9 +430,27 @@
     </Run>
     <Run Id="prueba_mig_7series_0_1_synth_1" Type="Ft3:Synth" SrcSet="prueba_mig_7series_0_1" Part="xc7a100tcsg324-1" ConstrsSet="prueba_mig_7series_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/prueba_mig_7series_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/prueba_mig_7series_0_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/prueba_mig_7series_0_1_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="prueba_top_vga_0_0_synth_1" Type="Ft3:Synth" SrcSet="prueba_top_vga_0_0" Part="xc7a100tcsg324-1" ConstrsSet="prueba_top_vga_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/prueba_top_vga_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/prueba_top_vga_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/prueba_top_vga_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="prueba_axi_smc_0_synth_1" Type="Ft3:Synth" SrcSet="prueba_axi_smc_0" Part="xc7a100tcsg324-1" ConstrsSet="prueba_axi_smc_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/prueba_axi_smc_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/prueba_axi_smc_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/prueba_axi_smc_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -598,9 +631,7 @@
     </Run>
     <Run Id="prueba_axi_gpio_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="prueba_axi_gpio_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="prueba_axi_gpio_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/prueba_axi_gpio_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/prueba_axi_gpio_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -617,9 +648,7 @@
     </Run>
     <Run Id="prueba_rst_mig_7series_0_81M_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="prueba_rst_mig_7series_0_81M_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="prueba_rst_mig_7series_0_81M_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/prueba_rst_mig_7series_0_81M_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/prueba_rst_mig_7series_0_81M_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -636,9 +665,41 @@
     </Run>
     <Run Id="prueba_mig_7series_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="prueba_mig_7series_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="prueba_mig_7series_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/prueba_mig_7series_0_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/prueba_mig_7series_0_1_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="prueba_top_vga_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="prueba_top_vga_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="prueba_top_vga_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/prueba_top_vga_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/prueba_top_vga_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="prueba_axi_smc_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="prueba_axi_smc_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="prueba_axi_smc_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/prueba_axi_smc_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/prueba_axi_smc_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
