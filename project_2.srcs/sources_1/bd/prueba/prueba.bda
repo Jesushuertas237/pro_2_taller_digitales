@@ -244,6 +244,60 @@
             },
             "V6": {
                 "VT": "AC",
+                "BA": "0x40010000",
+                "HA": "0x4001FFFF",
+                "BP": "C_BASEADDR",
+                "HP": "C_HIGHADDR",
+                "MA": "Data",
+                "MX": "/microblaze_riscv_0",
+                "MI": "M_AXI_DP",
+                "MS": "SEG_axi_gpio_1_Reg",
+                "MV": "xilinx.com:ip:microblaze_riscv:1.0",
+                "SX": "/axi_gpio_1",
+                "SI": "S_AXI",
+                "SS": "Reg",
+                "SV": "xilinx.com:ip:axi_gpio:2.0",
+                "TM": "data",
+                "TU": "register"
+            },
+            "V7": {
+                "VT": "AC",
+                "BA": "0x44A00000",
+                "HA": "0x44A0FFFF",
+                "BP": "C_BASEADDR",
+                "HP": "C_HIGHADDR",
+                "MA": "Data",
+                "MX": "/microblaze_riscv_0",
+                "MI": "M_AXI_DP",
+                "MS": "SEG_axi_quad_spi_0_Reg",
+                "MV": "xilinx.com:ip:microblaze_riscv:1.0",
+                "SX": "/axi_quad_spi_0",
+                "SI": "AXI_LITE",
+                "SS": "Reg",
+                "SV": "xilinx.com:ip:axi_quad_spi:3.2",
+                "TM": "data",
+                "TU": "register"
+            },
+            "V8": {
+                "VT": "AC",
+                "BA": "0x44A10000",
+                "HA": "0x44A1FFFF",
+                "BP": "C_BASEADDR",
+                "HP": "C_HIGHADDR",
+                "MA": "Data",
+                "MX": "/microblaze_riscv_0",
+                "MI": "M_AXI_DP",
+                "MS": "SEG_axi_quad_spi_1_Reg",
+                "MV": "xilinx.com:ip:microblaze_riscv:1.0",
+                "SX": "/axi_quad_spi_1",
+                "SI": "AXI_LITE",
+                "SS": "Reg",
+                "SV": "xilinx.com:ip:axi_quad_spi:3.2",
+                "TM": "data",
+                "TU": "register"
+            },
+            "V9": {
+                "VT": "AC",
                 "BA": "0x80000000",
                 "HA": "0x87FFFFFF",
                 "BP": "C_BASEADDR",
@@ -261,7 +315,7 @@
                 "TM": "data",
                 "TU": "memory"
             },
-            "V7": {
+            "V10": {
                 "VT": "AC",
                 "BA": "0xC0000000",
                 "HA": "0xC003FFFF",
@@ -311,6 +365,21 @@
             },
             {
                 "src": "V7",
+                "trg": "V2",
+                "EH": "2"
+            },
+            {
+                "src": "V8",
+                "trg": "V2",
+                "EH": "2"
+            },
+            {
+                "src": "V9",
+                "trg": "V2",
+                "EH": "2"
+            },
+            {
+                "src": "V10",
                 "trg": "V2",
                 "EH": "2"
             }
