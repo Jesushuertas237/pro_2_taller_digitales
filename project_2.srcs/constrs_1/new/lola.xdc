@@ -24,3 +24,23 @@ set_property IOSTANDARD LVCMOS33 [get_ports {VGA_G_0[*]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {VGA_B_0[*]}]
 set_property IOSTANDARD LVCMOS33 [get_ports VGA_HS_0]
 set_property IOSTANDARD LVCMOS33 [get_ports VGA_VS_0]
+
+# JA - SPI con otro grupo
+set_property PACKAGE_PIN C17 [get_ports {SPI_0_0_sck_io}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SPI_0_0_sck_io}]
+set_property PACKAGE_PIN D18 [get_ports {SPI_0_0_io0_io}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SPI_0_0_io0_io}]
+set_property PACKAGE_PIN E18 [get_ports {SPI_0_0_io1_io}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SPI_0_0_io1_io}]
+set_property PACKAGE_PIN G17 [get_ports {SPI_0_0_ss_io}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SPI_0_0_ss_io}]
+
+# SD onboard
+set_property PACKAGE_PIN B1 [get_ports {SPI_0_1_sck_io}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SPI_0_1_sck_io}]
+set_property PACKAGE_PIN C1 [get_ports {SPI_0_1_io0_io}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SPI_0_1_io0_io}]
+set_property PACKAGE_PIN C2 [get_ports {SPI_0_1_io1_io}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SPI_0_1_io1_io}]
+set_property PACKAGE_PIN D2 [get_ports {SPI_0_1_ss_io}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SPI_0_1_ss_io}]
