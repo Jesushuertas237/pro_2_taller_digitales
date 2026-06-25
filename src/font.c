@@ -7,8 +7,12 @@
  * Las letras ocupan las columnas centrales (bits 1-6, 6px de ancho) igual que
  * los digitos, con la fila 7 en blanco como separacion vertical.
  * El mapeo nibble->pixel calibrado vive en draw_char (nibble_pos = (5-col)&7).
+ * Almacenado en DDR2 mediante sección .images
+ *
+ * NUEVO: se agregaron 4 glifos de puntuacion (indices 38-41): ¿ ? ( )
+ * Diseñados con el mismo estilo/convencion que el resto de la tabla.
  */
-static unsigned char font_bitmap[38][8] = {
+static unsigned char font_bitmap[42][8] __attribute__((section(".images"))) = {
 	/* A */ {0x3C, 0x42, 0x42, 0x7E, 0x42, 0x42, 0x42, 0x00},
 	/* B */ {0x7C, 0x42, 0x42, 0x7C, 0x42, 0x42, 0x7C, 0x00},
 	/* C */ {0x3C, 0x42, 0x40, 0x40, 0x40, 0x42, 0x3C, 0x00},
@@ -47,6 +51,10 @@ static unsigned char font_bitmap[38][8] = {
 	/* 9 */ {0x3C, 0x42, 0x42, 0x3E, 0x02, 0x42, 0x3C, 0x00},  /* 9 clasico */
 	/* space */ {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 	/* . */ {0x00, 0x00, 0x00, 0x00, 0x00, 0x18, 0x18, 0x00},
+	/* ¿ (38) */ {0x18, 0x00, 0x18, 0x30, 0x40, 0x42, 0x3C, 0x00},
+	/* ?  (39) */ {0x3C, 0x42, 0x02, 0x0C, 0x18, 0x00, 0x18, 0x00},
+	/* (  (40) */ {0x0C, 0x10, 0x20, 0x20, 0x20, 0x10, 0x0C, 0x00},
+	/* )  (41) */ {0x30, 0x08, 0x04, 0x04, 0x04, 0x08, 0x30, 0x00},
 };
 
 /* Mapear caracter ASCII a indice en font_bitmap */
@@ -56,6 +64,10 @@ static int char_to_index(char c) {
 	if (c >= '0' && c <= '9') return 26 + (c - '0');
 	if (c == ' ') return 36;
 	if (c == '.') return 37;
+	if (c == (char)0xBF) return 38;  /* ¿  -- usar "\xBF" en el string, no el caracter literal (ver nota abajo) */
+	if (c == '?') return 39;
+	if (c == '(') return 40;
+	if (c == ')') return 41;
 	return -1;
 }
 
