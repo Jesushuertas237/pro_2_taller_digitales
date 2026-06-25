@@ -2,15 +2,11 @@
 #include "vga.h"
 #include <stdint.h>
 
-/* Bitmap font 8x8 - ALFABETO REAL
- * Bit order: cada byte = 8 pixeles, bit 7 = columna izquierda ... bit 0 = der.
- * Las letras ocupan las columnas centrales (bits 1-6, 6px de ancho) igual que
- * los digitos, con la fila 7 en blanco como separacion vertical.
- * El mapeo nibble->pixel calibrado vive en draw_char (nibble_pos = (5-col)&7).
- * Almacenado en DDR2 mediante sección .images
- *
- * NUEVO: se agregaron 4 glifos de puntuacion (indices 38-41): ¿ ? ( )
- * Diseñados con el mismo estilo/convencion que el resto de la tabla.
+/*
+ * Font Bitmap Table (42 glyphs, 8x8 pixels each)
+ * Storage: DDR2 section (.images)
+ * Bit order: byte[row] = 8 pixels, bit 7 (left) to bit 0 (right)
+ * Character indices: A-Z(0-25), 0-9(26-35), space(36), dot(37), ¿?(38), ?(39), ((40), )(41)
  */
 static unsigned char font_bitmap[42][8] __attribute__((section(".images"))) = {
 	/* A */ {0x3C, 0x42, 0x42, 0x7E, 0x42, 0x42, 0x42, 0x00},
@@ -39,16 +35,16 @@ static unsigned char font_bitmap[42][8] __attribute__((section(".images"))) = {
 	/* X */ {0x42, 0x24, 0x18, 0x18, 0x18, 0x24, 0x42, 0x00},
 	/* Y */ {0x42, 0x24, 0x18, 0x18, 0x18, 0x18, 0x18, 0x00},
 	/* Z */ {0x7E, 0x04, 0x08, 0x10, 0x20, 0x40, 0x7E, 0x00},
-	/* 0 */ {0x3C, 0x42, 0x42, 0x42, 0x42, 0x42, 0x3C, 0x00},  /* 0 clasico */
-	/* 1 */ {0x08, 0x18, 0x08, 0x08, 0x08, 0x08, 0x3E, 0x00},  /* 1 clasico */
-	/* 2 */ {0x3C, 0x42, 0x02, 0x0C, 0x10, 0x20, 0x7E, 0x00},  /* 2 clasico */
-	/* 3 */ {0x3C, 0x42, 0x02, 0x1C, 0x02, 0x42, 0x3C, 0x00},  /* 3 clasico */
-	/* 4 */ {0x04, 0x0C, 0x14, 0x24, 0x7E, 0x04, 0x04, 0x00},  /* 4 clasico */
-	/* 5 */ {0x7E, 0x40, 0x40, 0x7C, 0x02, 0x42, 0x3C, 0x00},  /* 5 clasico */
-	/* 6 */ {0x1C, 0x20, 0x40, 0x7C, 0x42, 0x42, 0x3C, 0x00},  /* 6 clasico */
-	/* 7 */ {0x7E, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x00},  /* 7 clasico */
-	/* 8 */ {0x3C, 0x42, 0x42, 0x3C, 0x42, 0x42, 0x3C, 0x00},  /* 8 clasico */
-	/* 9 */ {0x3C, 0x42, 0x42, 0x3E, 0x02, 0x42, 0x3C, 0x00},  /* 9 clasico */
+	/* 0 */ {0x3C, 0x42, 0x42, 0x42, 0x42, 0x42, 0x3C, 0x00},  
+	/* 1 */ {0x08, 0x18, 0x08, 0x08, 0x08, 0x08, 0x3E, 0x00}, 
+	/* 2 */ {0x3C, 0x42, 0x02, 0x0C, 0x10, 0x20, 0x7E, 0x00}, 
+	/* 3 */ {0x3C, 0x42, 0x02, 0x1C, 0x02, 0x42, 0x3C, 0x00},  
+	/* 4 */ {0x04, 0x0C, 0x14, 0x24, 0x7E, 0x04, 0x04, 0x00}, 
+	/* 5 */ {0x7E, 0x40, 0x40, 0x7C, 0x02, 0x42, 0x3C, 0x00},  
+	/* 6 */ {0x1C, 0x20, 0x40, 0x7C, 0x42, 0x42, 0x3C, 0x00},  
+	/* 7 */ {0x7E, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x00},  
+	/* 8 */ {0x3C, 0x42, 0x42, 0x3C, 0x42, 0x42, 0x3C, 0x00},  
+	/* 9 */ {0x3C, 0x42, 0x42, 0x3E, 0x02, 0x42, 0x3C, 0x00},  
 	/* space */ {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 	/* . */ {0x00, 0x00, 0x00, 0x00, 0x00, 0x18, 0x18, 0x00},
 	/* ¿ (38) */ {0x18, 0x00, 0x18, 0x30, 0x40, 0x42, 0x3C, 0x00},
@@ -57,7 +53,7 @@ static unsigned char font_bitmap[42][8] __attribute__((section(".images"))) = {
 	/* )  (41) */ {0x30, 0x08, 0x04, 0x04, 0x04, 0x08, 0x30, 0x00},
 };
 
-/* Mapear caracter ASCII a indice en font_bitmap */
+/* ASCII to bitmap index mapping. Returns -1 for unsupported characters. */
 static int char_to_index(char c) {
 	if (c >= 'A' && c <= 'Z') return c - 'A';
 	if (c >= 'a' && c <= 'z') return c - 'a';
@@ -71,9 +67,9 @@ static int char_to_index(char c) {
 	return -1;
 }
 
-/* Renderizar un caracter construyendo palabras completas (8 pixeles por escritura)
- * Sin shifts complicados - solo escribe palabras de 32 bits al hardware
- * Alinea x a multiple de 8 para escribir palabras completas sin residuo
+/*
+ * Renders glyph as 8-pixel words aligned to word boundary.
+ * Format: 4 bits per pixel, pixel [7..0] -> bits [31..0] (rightmost pixel LSB)
  */
 void draw_char(int x, int y, char c, unsigned char color) {
 	int idx = char_to_index(c);
@@ -98,7 +94,7 @@ void draw_char(int x, int y, char c, unsigned char color) {
 	}
 }
 
-/* Renderizar una cadena de texto */
+/* Renders null-terminated string starting at (x,y), 8 pixels per character. */
 void draw_string(int x, int y, const char *str, unsigned char color) {
 	int px = x;
 	while (*str) {
@@ -108,19 +104,13 @@ void draw_string(int x, int y, const char *str, unsigned char color) {
 	}
 }
 
-/* ── Renderizador ROBUSTO ───────────────────────────────────────────────────
- * Cada pixel encendido del glifo se dibuja con draw_rect (palabra UNIFORME),
- * que es el unico camino confiable en este IP. Nunca se escribe una palabra
- * con nibbles mezclados, asi que no depende del orden interno de los nibbles
- * (lo unico que importa es la direccion del word_addr, ya confirmada por el
- * test del '7' gigante).
- *
- * Orientacion: la fuente define bit7 = columna izquierda. Por eso la columna
- * de pantalla sx (0 = izquierda) se enciende segun el bit (7 - sx) del byte.
- * Si en el HW saliera espejado, basta poner FONT_MIRROR en 1.
+/*
+ * Magnified glyph rendering using draw_rect() for each pixel.
+ * Each glyph pixel expands to FONT_BLOCK_W x vscale pixels.
+ * Avoids nibble-mixing by writing uniform 8-pixel blocks.
  */
-#define FONT_BLOCK_W 8   /* ancho de cada pixel del glifo, en px (1 palabra) */
-#define FONT_MIRROR  0   /* 0 = orientacion natural; 1 = espejo horizontal */
+#define FONT_BLOCK_W 8
+#define FONT_MIRROR  0
 
 void draw_char_big(int x, int y, char c, unsigned char color, int vscale) {
 	int idx = char_to_index(c);
@@ -145,7 +135,7 @@ void draw_char_big(int x, int y, char c, unsigned char color, int vscale) {
 
 void draw_string_big(int x, int y, const char *str, unsigned char color, int vscale) {
 	int px = x;
-	int advance = 8 * FONT_BLOCK_W + FONT_BLOCK_W;  /* ancho del glifo + 1 bloque de gap */
+	int advance = 8 * FONT_BLOCK_W + FONT_BLOCK_W;  /* Character width including spacing */
 	while (*str) {
 		draw_char_big(px, y, *str, color, vscale);
 		px += advance;
@@ -153,7 +143,7 @@ void draw_string_big(int x, int y, const char *str, unsigned char color, int vsc
 	}
 }
 
-/* ── Experimento: draw_char compacto con corrimiento de nibbles ──────────── */
+/* ── Experiment: Compact draw_char with nibble shifting──────────── */
 void draw_char_rot(int x, int y, char c, unsigned char color, int rot) {
 	int idx = char_to_index(c);
 	if (idx < 0) return;
@@ -178,7 +168,7 @@ void draw_char_rot(int x, int y, char c, unsigned char color, int rot) {
 	}
 }
 
-/* ── Experimento: corrimiento + espejo opcional ─────────────────────────── */
+/* ── Experiment: shift + optional mirror ─────────────────────────── */
 void draw_char_xform(int x, int y, char c, unsigned char color, int rot, int mirror) {
 	int idx = char_to_index(c);
 	if (idx < 0) return;
