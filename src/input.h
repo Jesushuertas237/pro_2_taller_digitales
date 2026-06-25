@@ -1,23 +1,18 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#define GPIO_SWITCHES_BASE 0x40000000
-#define GPIO_BUTTONS_BASE  0x40010000
-#define GPIO_DATA_OFFSET   0x0
+#define GPIO_BUTTONS_BASE   0x40010000
+#define GPIO_SWITCHES_BASE  0x40020000
+#define GPIO_DATA_REG       0x00
+#define GPIO_TRI_REG        0x04
 
-typedef struct {
-    unsigned int btnc;
-    unsigned int btnu;
-    unsigned int btnl;
-    unsigned int btnr;
-    unsigned int btnd;
-} Buttons;
+/* Inicializar GPIO para entrada */
+void input_init(void);
 
-typedef struct {
-    unsigned int value;
-} Switches;
+/* Leer botones con debounce (retorna cambios detectados) */
+unsigned int input_read_buttons(void);
 
-Switches read_switches(void);
-Buttons read_buttons(void);
+/* Leer switches con debounce (retorna cambios detectados) */
+unsigned int input_read_switches(void);
 
 #endif
