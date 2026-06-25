@@ -1,20 +1,27 @@
 #ifndef UI_TEXT_H
 #define UI_TEXT_H
 
-/* Modulo GENERICO de texto -- reemplaza a menu_text.h/.c.
+/*
+ * ============================================================================
+ * ui_text.h - Centered Text UI Module
+ * ============================================================================
+ * Generic text rendering with horizontal centering on 640px display.
+ * Dependencies: font.h, vga.h
+ * ============================================================================
+ */
+
+/*
+ * ui_draw_text_centered(y, text, color)
+ * Renders string centered horizontally at Y coordinate.
  *
- * A diferencia de menu_text.c (que tenia las 3 frases del menu, sus
- * colores y sus posiciones todas fijas/hardcodeadas adentro), este modulo
- * NO sabe nada de que pantalla lo esta llamando: solo sabe dibujar UNA
- * linea de texto centrada horizontalmente, en el color y la fila Y que le
- * digas. Todo el contenido especifico de cada interfaz (que dice, en que
- * color, en que posicion) vive en main.c, en una funcion draw_state_*()
- * por estado -- asi se puede editar cada pantalla sin tocar este archivo.
+ * Parameters:
+ *   y:     Y coordinate in pixels (0-479)
+ *   text:  Null-terminated string pointer
+ *   color: 4-bit color index (0x0-0xF)
  *
- * Usa draw_string() de font.h (fuente compacta 8x8, ya confirmada limpia
- * en tu hardware). Cada caracter mide 8px de ancho, asi que frases largas
- * (como "SELECCIONA EL MAESTRO CON SW15") entran en una sola linea de
- * 640px sin necesidad de partirlas.
+ * Returns: void
+ * Centering formula: x = (640 - strlen(text)*8) / 2
+ * Minimum x: 0 (no overflow to left)
  */
 void ui_draw_text_centered(int y, const char *text, unsigned char color);
 

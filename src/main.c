@@ -5,23 +5,13 @@
 #include "ui_text.h"
 #include <string.h>
 
-/* ============================================================================
- * MAQUINA DE ESTADOS PRINCIPAL DEL JUEGO
- * ============================================================================
- *
- *   MENU (portada MENU.BIN + pregunta + SW0/SW1)
- *     --SW0--> GAME
- *     --SW1--> SELECT_MASTER
- *
- *   SELECT_MASTER (fondo TWO.BIN, "SELECCIONA EL MAESTRO CON SW15")
- *     --SW15--> PRESS_START
- *
- *   PRESS_START (fondo TWO.BIN, "PRESIONE BTNC PARA INICIAR")
- *     --BTNC--> GAME
- *
- *   GAME (fondo negro -- placeholder, sin imagen, "JUEGO EN PROCESO")
- *     --BTNC--> MENU
- * ============================================================================ */
+/*
+ * Game State Machine
+ * STATE_MENU (MENU.BIN background + prompts, SW0/SW1 transitions)
+ * STATE_SELECT_MASTER (TWO.BIN background, SW15 selects)
+ * STATE_PRESS_START (TWO.BIN background, BTNC to start)
+ * STATE_GAME (black background, BTNC returns to MENU)
+ */
 
 typedef enum {
 	STATE_MENU,
@@ -30,36 +20,22 @@ typedef enum {
 	STATE_GAME
 } GameState;
 
-/* ----------------------------------------------------------------------------
- * Mapeo de bits de entrada.
- *
- * SW0/SW1/SW15 asumen el mapeo estandar de la Nexys A7 (switch N -> bit N).
- * BTNC_BIT es una SUPOSICION (bit 0 del registro de botones) -- verifica
- * la posicion real de BTNC en tu vector de botones (.xdc / input.c) y
- * ajustala aqui si no coincide.
- * ---------------------------------------------------------------------- */
+/* Input bit mapping for Nexys A7. SW_N -> bit N standard. BTNC_BIT assumed at bit 0. */
 #define SW0_BIT   0
 #define SW1_BIT   1
 #define SW15_BIT  15
-#define BTNC_BIT  0   /* VERIFICAR */
+#define BTNC_BIT  0
 
 static int bit_is_set(unsigned int reg, int bit) {
 	return (reg >> bit) & 0x1;
 }
 
-/* ----------------------------------------------------------------------------
- * Cache de imagenes en DDR2. sd_image_load() es lento (lee la SD por SPI a
- * pulso, byte a byte, ~225 sectores por imagen) -- si lo llamaramos cada
- * vez que se entra a un estado, cada cambio de pantalla se sentiria con
- * latencia. En vez de eso, ambas imagenes se cargan UNA sola vez al
- * arrancar (preload_images(), llamada antes del while(1)) y se copian de
- * la SD a direcciones FIJAS en DDR2; de ahi en adelante draw_state_*()
- * solo dibuja desde esas direcciones, sin volver a tocar la SD.
- *
- * Direcciones elegidas bien lejos de DDR2_IMAGE_BASE (0x80100000, que
- * sd_image_load() usa solo de forma temporal durante la copia) y del
- * vga_cache (0x81000000), para no pisar nada.
- * ---------------------------------------------------------------------- */
+/*
+ * Image cache in DDR2. sd_image_load() is slow (SPI byte-by-byte reads).
+ * Preload both images at startup to fixed DDR2 addresses to avoid per-state latency.
+ * Cache addresses chosen to avoid conflicts with sd_image_load() temp buffer (0x80100000)
+ * and vga_cache (0x81000000).
+ */
 #define IMG_BYTES        (480 * 480 / 2)
 #define MENU_CACHE_ADDR  0x81100000
 #define TWO_CACHE_ADDR   0x81200000
@@ -80,20 +56,16 @@ static void preload_images(void) {
 	}
 }
 
-/* ----------------------------------------------------------------------------
- * Dibujo de cada estado. Todo lo especifico de la pantalla (texto, color,
- * posicion) vive aqui -- ui_text.c solo da la primitiva generica de dibujo.
- * ---------------------------------------------------------------------- */
+/* State-specific rendering. Text, color, positioning defined here. ui_text.c provides generic primitive. */
 
 static void draw_state_menu(void) {
 	if (menu_ok) {
 		draw_image_centered(menu_cache);
 	} else {
-		clear_screen(COLOR_MAGENTA_LIGHT);  /* error cargando MENU.BIN */
+		clear_screen(COLOR_MAGENTA_LIGHT);  /* Fallback if MENU.BIN load failed */
 	}
 
-	/* "\xBF" = ¿ en un solo byte. NO escribir el caracter ¿ directo en el
-	 * string -- en UTF-8 ocupa 2 bytes y rompe la tabla de font.c. */
+	/* Use "\xBF" (¿ in single byte). UTF-8 encoding would break font table. */
 	ui_draw_text_centered(390, "\xBF EN QUE MODO QUIERES JUGAR?", COLOR_RED_LIGHT);
 	ui_draw_text_centered(440, "SW0(SINGLE PLAYER)     SW1(MULTIPLAYER)", COLOR_CYAN_LIGHT);
 }
@@ -102,7 +74,7 @@ static void draw_state_select_master(void) {
 	if (two_ok) {
 		draw_image_centered(two_cache);
 	} else {
-		clear_screen(COLOR_MAGENTA_LIGHT);  /* error cargando TWO.BIN */
+		clear_screen(COLOR_MAGENTA_LIGHT);
 	}
 	ui_draw_text_centered(253, "SELECCIONA EL MAESTRO CON SW15", COLOR_RED_LIGHT);
 }
@@ -111,14 +83,13 @@ static void draw_state_press_start(void) {
 	if (two_ok) {
 		draw_image_centered(two_cache);
 	} else {
-		clear_screen(COLOR_MAGENTA_LIGHT);  /* error cargando TWO.BIN */
+		clear_screen(COLOR_MAGENTA_LIGHT);
 	}
 	ui_draw_text_centered(253, "PRESIONE BTNC PARA INICIAR", COLOR_RED_LIGHT);
 }
 
 static void draw_state_game(void) {
-	/* TODO: aqui entra la grafica/logica real del juego mas adelante.
-	 * Por ahora, placeholder de fondo negro + texto, como se pidio. */
+	/* Placeholder game state (black background + text). Full game logic goes here. */
 	clear_screen(COLOR_BLACK);
 	ui_draw_text_centered(230, "JUEGO EN PROCESO", COLOR_WHITE);
 }
@@ -126,16 +97,15 @@ static void draw_state_game(void) {
 int main(void) {
 	input_init();
 	sd_image_init();
-	preload_images();  /* unica vez que se lee la SD en toda la ejecucion */
+	preload_images();  /* Load images from SD once at startup */
 
 	GameState state = STATE_MENU;
-	GameState prev_state = (GameState)(-1);  /* fuerza el primer dibujado */
+	GameState prev_state = (GameState)(-1);  /* Force first render */
 
 	int sw0_prev = 0, sw1_prev = 0, sw15_prev = 0, btnc_prev = 0;
 
 	while (1) {
-		/* Redibuja SOLO cuando cambia de estado -- no en cada vuelta del
-		 * loop, para no recargar la imagen ni reescribir VGA sin necesidad */
+		/* Render only when state changes to minimize VGA writes and image reloads */
 		if (state != prev_state) {
 			switch (state) {
 				case STATE_MENU:          draw_state_menu(); break;
@@ -154,9 +124,7 @@ int main(void) {
 		int sw15_now = bit_is_set(sw, SW15_BIT);
 		int btnc_now = bit_is_set(btn, BTNC_BIT);
 
-		/* Flancos de subida (0->1): asi un switch que ya estaba encendido
-		 * desde antes (por ejemplo al volver al MENU) no dispara la
-		 * transicion de nuevo solo; hay que volver a moverlo. */
+		/* Rising edges only (0->1). Prevents repeated transitions if input held. */
 		int sw0_edge  = sw0_now  && !sw0_prev;
 		int sw1_edge  = sw1_now  && !sw1_prev;
 		int sw15_edge = sw15_now && !sw15_prev;

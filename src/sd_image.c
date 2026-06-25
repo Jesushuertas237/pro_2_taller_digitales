@@ -20,11 +20,13 @@
 
 static unsigned char *image_buffer = (unsigned char *)DDR2_IMAGE_BASE;
 
-/* ===================== Capa SPI / SD (bajo nivel, sin cambios) ===================== */
+/* ===================== SPI / SD Layer (low-level, unchanged) ===================== */
 
+/* Transmit and receive single byte via SPI. Polls for RX completion with timeout. */
 static unsigned char spi_byte(unsigned char tx) {
     int t;
 
+    /* Drain RX buffer before transmission */
     while (!(Xil_In32(SPI_SPISR) & SPISR_RX_EMPTY))
         (void)Xil_In32(SPI_DRR);
 
@@ -40,10 +42,12 @@ static unsigned char spi_byte(unsigned char tx) {
     return (unsigned char)(Xil_In32(SPI_DRR) & 0xFF);
 }
 
+/* Send SD command with argument and CRC. Returns response byte (R1 format). */
 static unsigned char sd_cmd(unsigned char cmd, unsigned int arg, unsigned char crc) {
     unsigned char r;
     int i;
 
+    /* Command format: 0x40 (start bits) | cmd */
     spi_byte(0x40 | cmd);
     spi_byte((unsigned char)((arg >> 24) & 0xFF));
     spi_byte((unsigned char)((arg >> 16) & 0xFF));
@@ -58,12 +62,15 @@ static unsigned char sd_cmd(unsigned char cmd, unsigned int arg, unsigned char c
     return 0xFF;
 }
 
+/* Read 512-byte block from SD card at specified address. Returns 0 on success, -1 on error. */
 static int sd_read_block(unsigned int block_addr, unsigned char *buffer) {
     unsigned char r;
     int i;
 
+    /* Assert chip select */
     Xil_Out32(SPI_SPISSR, 0x00000000);
     spi_byte(0xFF);
+    /* CMD17: Read single block */
     r = sd_cmd(17, block_addr, 0x00);
     Xil_Out32(SPI_SPISSR, 0xFFFFFFFF);
     spi_byte(0xFF);
@@ -95,7 +102,9 @@ static int sd_read_block(unsigned int block_addr, unsigned char *buffer) {
     return 0;
 }
 
+/* Initialize SD card controller and perform initialization sequence. Returns 0 on success, -1 on error. */
 int sd_image_init(void) {
+    /* Reset SPI controller */
     Xil_Out32(SPI_SRR, 0x0000000A);
     for (volatile int i = 0; i < 10000000; i++);
 
@@ -154,7 +163,7 @@ int sd_image_init(void) {
     return 0;
 }
 
-/* ===================== Capa FAT16 / FAT32 (con soporte de MBR) ===================== */
+/* ===================== FAT16/FAT32 Filesystem Layer (MBR support) ===================== */
 
 typedef struct {
     unsigned int bytes_per_sector;
@@ -168,28 +177,30 @@ typedef struct {
     unsigned int root_dir_sector;
     unsigned int root_dir_sectors;
     unsigned int first_data_sector;
-    unsigned int partition_base;  /* LBA absoluto donde arranca el volumen FAT (0 si no hay MBR) */
+    unsigned int partition_base; 
     int is_fat32;
 } fat_info_t;
 
 static fat_info_t fs;
 
+/* Read little-endian 16-bit value from buffer. */
 static unsigned short rd16(const unsigned char *p) {
     return (unsigned short)(p[0] | (p[1] << 8));
 }
 
+/* Read little-endian 32-bit value from buffer. */
 static unsigned int rd32(const unsigned char *p) {
     return (unsigned int)p[0] | ((unsigned int)p[1] << 8) |
            ((unsigned int)p[2] << 16) | ((unsigned int)p[3] << 24);
 }
 
-/* Lee un sector relativo al inicio del VOLUMEN (suma partition_base automaticamente) */
+/* Reads a sector relative to the start of the VOLUME (automatically adds partition_base) */
 static int read_vol_sector(unsigned int rel_sector, unsigned char *buf) {
     return sd_read_block(fs.partition_base + rel_sector, buf);
 }
 
-/* Interpreta un buffer de 512 bytes como BPB. Devuelve 0 si los campos tienen
- * pinta de ser un BPB real (y no, por ejemplo, un MBR malinterpretado). */
+/* Interprets a 512-byte buffer as a BPB. Returns 0 if the fields 
+ */
 static int parse_bpb(const unsigned char *boot_sector) {
     fs.bytes_per_sector    = rd16(&boot_sector[11]);
     fs.sectors_per_cluster = boot_sector[13];
@@ -218,10 +229,6 @@ static int parse_bpb(const unsigned char *boot_sector) {
     return (bps_ok && nf_ok && spc_ok) ? 0 : -1;
 }
 
-/* Monta el sistema de archivos. Detecta automaticamente si el sector 0 es
- * un BPB directo (tarjeta "superfloppy", sin tabla de particiones) o un MBR
- * (tabla de particiones), en cuyo caso busca la primera particion y lee el
- * BPB real desde ahi. Silencioso: no escribe nada en pantalla. */
 static int fat_mount(void) {
     unsigned char sector0[512];
 
