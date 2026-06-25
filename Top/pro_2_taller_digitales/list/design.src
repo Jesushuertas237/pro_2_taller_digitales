@@ -1,0 +1,8 @@
+scripts/prueba.tcl bd=prueba
+ip_repo/ip_def/src/axi_vram_ctrl.v
+ip_repo/ip_def/src/h_sync_gen.v
+ip_repo/ip_def/src/pixel_mux.v
+ip_repo/ip_def/src/top.v
+ip_repo/ip_def/src/v_sync_gen.v
+ip_repo/ip_def/src/vga_controller.v
+ip_repo/ip_def/src/vram.v
