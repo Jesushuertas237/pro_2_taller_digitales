@@ -6,7 +6,7 @@
  * Esto evita cuelgues en read_word y permite RMW rápido
  * CRÍTICO: usar uint32_t explícitamente (no unsigned int) para garantizar 32 bits
  */
-static uint32_t *vga_cache = (uint32_t *)0x80000000;
+static uint32_t *vga_cache = (uint32_t *)0x81000000; // antes 0x80000000
 
 void write_word(int word_addr, unsigned int value) {
     if (word_addr < TOTAL_WORDS) {
@@ -120,4 +120,31 @@ void draw_border(unsigned char color) {
 
 void delay_ms(int ms) {
     for(volatile int i = 0; i < ms * 100000; i++);
+}
+
+/* Dibujar imagen 480×480 centrada (con fondo negro en los lados) */
+void draw_image_centered(unsigned char *image_data) {
+    int start_x = (SCREEN_W - 480) / 2;  /* (640 - 480) / 2 = 80 */
+    int start_y = (SCREEN_H - 480) / 2;  /* (480 - 480) / 2 = 0 */
+
+    /* Dibujar fondo negro en los lados */
+    draw_rect(0, 0, start_x, SCREEN_H, COLOR_BLACK);  /* Lado izquierdo */
+    draw_rect(start_x + 480, 0, start_x, SCREEN_H, COLOR_BLACK);  /* Lado derecho */
+
+    /* Copiar imagen desde DDR2 a VGA */
+    uint32_t src_offset = 0;
+    for (int y = 0; y < 480; y++) {
+        for (int x = 0; x < 480; x += 8) {  /* 8 píxeles = 1 word */
+            int word_addr = ((start_y + y) * WORDS_PER_LINE) + ((start_x + x) / 8);
+            uint32_t word_val = 0;
+
+            /* Leer 8 píxeles (4 nibbles = 4 bytes) */
+            for (int px = 0; px < 4; px++) {
+            uint32_t byte_val = image_data[src_offset++];
+            word_val |= (byte_val << ((3 - px) * 8));   /* invierte el orden de armado */
+}
+
+            write_word(word_addr, word_val);
+        }
+    }
 }
