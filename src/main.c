@@ -10,22 +10,21 @@ int  pong_mp_handshake(int is_master);
 void pong_mp_master_run(void);
 void pong_mp_slave_run(void);
 
-/* ============================================================================
- * MAQUINA DE ESTADOS
+/*
+ * Maquina de estados del juego:
  *
- *   MENU              --SW0--> GAME          (dos jugadores, una board)
- *   MENU              --SW1--> MP_ROLE_SELECT
- *   MP_ROLE_SELECT           : SW15=ON=Maestro / SW15=OFF=Esclavo
- *                      --BTNC--> MP_HANDSHAKE (rol se bloquea aqui)
- *   MP_HANDSHAKE             : SPI handshake bloqueante
- *                      --OK---> MP_GAME
- *                      --FAIL-> MENU
- *   MP_GAME                  : juego SPI segun rol
- *                      --fin--> MENU
- *   GAME                     : pong local dos jugadores
- *                      --fin--> MENU
- * ============================================================================ */
-
+ *   MENU             --SW0-->  GAME             (pong local, dos jugadores)
+ *   MENU             --SW1-->  MP_ROLE_SELECT
+ *   MP_ROLE_SELECT            SW15=ON=Maestro / SW15=OFF=Esclavo
+ *                    --BTNC--> MP_HANDSHAKE     (rol se fija aqui)
+ *   MP_HANDSHAKE              handshake SPI bloqueante
+ *                    --OK-->   MP_GAME
+ *                    --FAIL--> MENU
+ *   MP_GAME                   juego SPI segun rol
+ *                    --fin-->  MENU
+ *   GAME                      pong local dos jugadores
+ *                    --fin-->  MENU
+ */
 typedef enum {
     STATE_MENU,
     STATE_MP_ROLE_SELECT,
@@ -34,24 +33,30 @@ typedef enum {
     STATE_GAME
 } GameState;
 
-#define SW0_BIT   0
-#define SW1_BIT   1
-#define SW15_BIT  15
-#define BTNC_BIT  0
+#define SW0_BIT  0
+#define SW1_BIT  1
+#define SW15_BIT 15
+#define BTNC_BIT 0
 
+/* Extrae el bit indicado de un registro de entrada */
 static int bit_is_set(unsigned int reg, int bit) {
     return (reg >> bit) & 0x1;
 }
 
-#define IMG_BYTES        (480 * 480 / 2)
-#define MENU_CACHE_ADDR  0x81100000
-#define TWO_CACHE_ADDR   0x81200000
+/* Tamano de una imagen 480x480 en formato 4bpp */
+#define IMG_BYTES (480 * 480 / 2)
+
+/* Direcciones en DDR2 para cache de imagenes precargadas desde SD */
+#define MENU_CACHE_ADDR 0x81100000
+#define TWO_CACHE_ADDR  0x81200000
 
 static unsigned char * const menu_cache = (unsigned char *)MENU_CACHE_ADDR;
 static unsigned char * const two_cache  = (unsigned char *)TWO_CACHE_ADDR;
 static int menu_ok = 0;
 static int two_ok  = 0;
 
+/* Carga MENU.BIN y FIELD.BIN desde SD a DDR2 al inicio para evitar lecturas
+   repetidas durante el juego. Si falla la carga se usa un color de fondo. */
 static void preload_images(void) {
     if (sd_image_load("MENU.BIN") == 0) {
         memcpy(menu_cache, sd_image_get_buffer(), IMG_BYTES);
@@ -90,15 +95,16 @@ int main(void) {
     preload_images();
 
     GameState state      = STATE_MENU;
-    GameState prev_state = (GameState)(-1);
+    GameState prev_state = (GameState)(-1);  /* fuerza redibujado en la primera iteracion */
     int       is_master  = 0;
 
+    /* Estados previos para deteccion de flancos por software */
     int sw0_prev = 0, sw1_prev = 0, btnc_prev = 0;
 
     while (1) {
         if (state != prev_state) {
 
-            /* Estados bloqueantes: llaman a una funcion y vuelven al menu */
+            /* Estados bloqueantes: ejecutan su logica y regresan al menu al terminar */
             if (state == STATE_GAME) {
                 pong_paddles_run();
                 state      = STATE_MENU;
@@ -119,10 +125,10 @@ int main(void) {
                 continue;
             }
 
-            /* Estados de pantalla: solo dibujan y esperan input */
+            /* Estados de pantalla: solo dibujan y quedan esperando input */
             switch (state) {
-                case STATE_MENU:            draw_state_menu();            break;
-                case STATE_MP_ROLE_SELECT:  draw_state_mp_role_select();  break;
+                case STATE_MENU:           draw_state_menu();           break;
+                case STATE_MP_ROLE_SELECT: draw_state_mp_role_select(); break;
                 default: break;
             }
             prev_state = state;
@@ -135,6 +141,7 @@ int main(void) {
         int sw1_now  = bit_is_set(sw,  SW1_BIT);
         int btnc_now = bit_is_set(btn, BTNC_BIT);
 
+        /* Deteccion de flanco de subida por software */
         int sw0_edge  = sw0_now  && !sw0_prev;
         int sw1_edge  = sw1_now  && !sw1_prev;
         int btnc_edge = btnc_now && !btnc_prev;
@@ -150,8 +157,8 @@ int main(void) {
                 break;
             case STATE_MP_ROLE_SELECT:
                 if (btnc_edge) {
-                    /* Leer SW15 directo del GPIO — input_read_switches devuelve
-                     * flancos ascendentes, no niveles; SW15 estable daria 0 */
+                    /* Se lee SW15 directo del GPIO porque input_read_switches()
+                       devuelve flancos ascendentes, no niveles; SW15 estable daria 0 */
                     unsigned int sw_raw = Xil_In32(GPIO_SWITCHES_BASE + GPIO_DATA_REG);
                     is_master = (sw_raw >> SW15_BIT) & 1;
                     state     = STATE_MP_HANDSHAKE;

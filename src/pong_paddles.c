@@ -3,27 +3,24 @@
 #include "ui_text.h"
 
 /* ─── Configuracion ──────────────────────────────────────────────────────────── */
+
 #define PAD_W      8      /* 1 word VGA, word-aligned                           */
 #define PAD_H      60
 #define PAD_SPEED  10
-#define PLAYER_X   24    /* 3×8 px, word-aligned                                */
-#define CPU_X      608   /* 76×8 px, word-aligned                               */
+#define PLAYER_X   24    /* 3x8 px, word-aligned                                */
+#define CPU_X      608   /* 76x8 px, word-aligned                               */
 
-/*
- * BALL_VX debe ser multiplo de 8 para que bx permanezca siempre word-aligned.
- * Eso permite dibujar y borrar la bola con write_word directo, sin draw_pixel.
- * BALL_SZ = 8 → 1 word por fila → draw y erase muy rapido y limpio.
- */
+
 #define BALL_SZ    8     /* 1 word de ancho                                     */
 #define BALL_VX    8     /* multiplo de 8: bx siempre alineado                  */
 #define BALL_VY    5
 
 #define SCORE_Y    8
-#define TOP_WALL   18    /* score ocupa y=8..15; margen de 2px */
+#define TOP_WALL   18    /* score ocupa y=8..15; margen de 2px                  */
 #define WIN_SCORE  7
 
-/* Ticks por frame — aumentar para ir mas lento, bajar para ir mas rapido. */
-#define TICK_NORMAL   7500U
+/* Ticks por frame — aumentar para ir mas lento, bajar para ir mas rapido */
+#define TICK_NORMAL 7500U
 
 #define BTN_C (1u << 0)   /* BTNC: salir al menu              */
 #define BTN_U (1u << 1)   /* BTNU: jugador 2 arriba           */
@@ -45,16 +42,17 @@ static int iclamp(int v, int lo, int hi) {
  * Dibujo y borrado se hacen con write_word directo: cero draw_pixel, cero RMW.
  */
 static void draw_ball_sq(int bx, int by, unsigned char color) {
-    unsigned int w    = color_to_word(color);
-    int          wx   = bx / 8;
+    unsigned int w  = color_to_word(color);
+    int          wx = bx / 8;
     for (int r = 0; r < BALL_SZ; r++)
         write_word((by + r) * WORDS_PER_LINE + wx, w);
 }
 
 /*
- * Borra la union de la posicion anterior y nueva de la bola.
- * Como bx siempre es multiplo de 8, left y right tambien lo son
- * → solo write_word, sin draw_pixel ni read-modify-write.
+ * Borra la union del bounding box entre la posicion anterior y la nueva.
+ * Como bx es multiplo de 8, left y right tambien lo son: solo write_word,
+ * sin draw_pixel ni read-modify-write. El margen de 1px en top/bot cubre
+ * posibles artefactos por velocidad vertical impar (BALL_VY = 5).
  */
 static void erase_ball_area(int px, int py, int nx, int ny) {
     int left  = imin(px, nx);
@@ -69,14 +67,15 @@ static void erase_ball_area(int px, int py, int nx, int ny) {
     }
 }
 
-/* Paletas en x word-aligned, ancho 1 word → draw_rect exacto */
+/* Paletas en x word-aligned, ancho 1 word: draw_rect escribe palabras uniformes */
 static void draw_paddle_rect(int x, int y, unsigned char color) {
     draw_rect(x, y, PAD_W, PAD_H, color);
 }
 
+/* Borra solo la franja descubierta al mover la paleta, evitando redibujar todo */
 static void erase_paddle_strip(int x, int new_y, int old_y) {
     if (new_y > old_y)
-        draw_rect(x, old_y, PAD_W, new_y - old_y, COLOR_BLACK);
+        draw_rect(x, old_y,        PAD_W, new_y - old_y, COLOR_BLACK);
     else if (new_y < old_y)
         draw_rect(x, new_y + PAD_H, PAD_W, old_y - new_y, COLOR_BLACK);
 }
@@ -92,6 +91,7 @@ static void draw_score(int ps, int cs) {
     ui_draw_text_centered(SCORE_Y, buf, COLOR_GRAY_LIGHT);
 }
 
+/* Redibuja el campo completo: fondo, marcador, paletas y bola */
 static void draw_field(int py, int cy, int bx, int by, int ps, int cs) {
     clear_screen(COLOR_BLACK);
     draw_score(ps, cs);
@@ -107,12 +107,18 @@ static void move_player_pad(int *y, int up, int down) {
     *y = iclamp(*y, 0, SCREEN_H - PAD_H);
 }
 
-/* Retorna 0=juego sigue, 1=J1 anoto, -1=J2 anoto */
+/*
+ * Avanza la bola un paso y gestiona rebotes en paredes y paletas.
+ * Al rebotar en una paleta corrige bx para que quede exactamente al borde,
+ * manteniendo la alineacion a palabra.
+ * Retorna 1 si J1 anoto, -1 si J2 anoto, 0 si la bola sigue en juego.
+ */
 static int step_ball(int *bx, int *by, int *vx, int *vy,
                      int player_y, int cpu_y) {
     *bx += *vx;
     *by += *vy;
 
+    /* Rebote en pared superior (debajo del marcador) e inferior */
     if (*by <= TOP_WALL) {
         *by = TOP_WALL;
         if (*vy < 0) *vy = -*vy;
@@ -122,17 +128,19 @@ static int step_ball(int *bx, int *by, int *vx, int *vy,
         if (*vy > 0) *vy = -*vy;
     }
 
+    /* Rebote en paleta izquierda (J1); bx queda en PLAYER_X+PAD_W = 32 = 4x8 */
     if (*vx < 0 &&
         *bx <= PLAYER_X + PAD_W && *bx + BALL_SZ > PLAYER_X &&
         *by + BALL_SZ > player_y && *by < player_y + PAD_H) {
-        *bx = PLAYER_X + PAD_W;   /* 32 = 4×8, word-aligned */
+        *bx = PLAYER_X + PAD_W;
         *vx = -*vx;
     }
 
+    /* Rebote en paleta derecha (J2); bx queda en CPU_X-BALL_SZ = 600 = 75x8 */
     if (*vx > 0 &&
         *bx + BALL_SZ >= CPU_X && *bx < CPU_X + PAD_W &&
         *by + BALL_SZ > cpu_y && *by < cpu_y + PAD_H) {
-        *bx = CPU_X - BALL_SZ;    /* 600 = 75×8, word-aligned */
+        *bx = CPU_X - BALL_SZ;
         *vx = -*vx;
     }
 
@@ -143,19 +151,20 @@ static int step_ball(int *bx, int *by, int *vx, int *vy,
 
 /* ─── Punto de entrada ───────────────────────────────────────────────────────── */
 void pong_paddles_run(void) {
+    /* Debounce: esperar a que BTNC se suelte antes de iniciar */
     while (Xil_In32(GPIO_BUTTONS_BASE + GPIO_DATA_REG) & BTN_C);
 
     /*
      * frame_count persiste entre llamadas (static).
-     * Incrementa cada frame → actua como fuente de pseudo-aleatoriedad
-     * para la direccion vertical de saque.
+     * Incrementa cada frame y se usa como fuente de pseudo-aleatoriedad
+     * para la direccion vertical del saque.
      */
     static unsigned int frame_count = 0;
 
     int player_y = (SCREEN_H - PAD_H) / 2;
     int cpu_y    = (SCREEN_H - PAD_H) / 2;
 
-    /* bx inicial: (640-8)/2 = 316, redondeado a multiplo de 8 → 312 */
+    /* bx inicial: (640-8)/2 = 316, redondeado a multiplo de 8 -> 312 */
     int bx = ((SCREEN_W - BALL_SZ) / 2) & ~7;
     int by = (SCREEN_H - BALL_SZ) / 2;
     int vx = BALL_VX;
@@ -171,29 +180,29 @@ void pong_paddles_run(void) {
     volatile unsigned int tick = 0;
 
     while (1) {
+        /* Esperar TICK_NORMAL ciclos antes de procesar el siguiente frame */
         tick++;
         if (tick < TICK_NORMAL) continue;
         tick = 0;
         frame_count++;
 
-        /* ── Lectura de entrada ── */
         unsigned int btn = Xil_In32(GPIO_BUTTONS_BASE + GPIO_DATA_REG);
 
-        int exit_now  = (btn & BTN_C) ? 1 : 0;
-        /* J1: BTNL=arriba  BTND=abajo */
+        int exit_now = (btn & BTN_C) ? 1 : 0;
+        /* J1: BTNL=arriba, BTND=abajo */
         int p1_up   = (btn & BTN_L) ? 1 : 0;
         int p1_down = (btn & BTN_D) ? 1 : 0;
-        /* J2: BTNU=arriba  BTNR=abajo */
+        /* J2: BTNU=arriba, BTNR=abajo */
         int p2_up   = (btn & BTN_U) ? 1 : 0;
         int p2_down = (btn & BTN_R) ? 1 : 0;
 
+        /* Flanco de subida en BTNC: salir al menu */
         if (exit_now && !prev_exit) {
             clear_screen(COLOR_BLACK);
             return;
         }
         prev_exit = exit_now;
 
-        /* ── Actualizacion del juego ── */
         prev_player_y = player_y;
         prev_cpu_y    = cpu_y;
         prev_bx = bx; prev_by = by;
@@ -207,7 +216,7 @@ void pong_paddles_run(void) {
             if (r ==  1) ps++;
             if (r == -1) cs++;
 
-            /* Saque con direccion vertical aleatoria segun frame_count */
+            /* Saque al centro; vy alterna segun bit de frame_count */
             bx = ((SCREEN_W - BALL_SZ) / 2) & ~7;
             by = (SCREEN_H - BALL_SZ) / 2;
             vx = (r == 1) ? BALL_VX : -BALL_VX;
@@ -222,13 +231,14 @@ void pong_paddles_run(void) {
                 else
                     ui_draw_text_centered(220, "GANO JUGADOR 2!", COLOR_CYAN_LIGHT);
                 ui_draw_text_centered(260, "PRESIONA BTNC PARA SALIR", COLOR_WHITE);
+                /* Esperar pulsacion y luego suelta de BTNC antes de salir */
                 while (!(Xil_In32(GPIO_BUTTONS_BASE + GPIO_DATA_REG) & BTN_C));
                 while (  Xil_In32(GPIO_BUTTONS_BASE + GPIO_DATA_REG) & BTN_C);
                 clear_screen(COLOR_BLACK);
                 return;
             }
         } else {
-            /* ── Renderizado incremental ── */
+            /* Frame normal: borrar solo las areas modificadas y redibujar */
             erase_paddle_strip(PLAYER_X, player_y, prev_player_y);
             erase_paddle_strip(CPU_X,    cpu_y,    prev_cpu_y);
             erase_ball_area(prev_bx, prev_by, bx, by);
