@@ -1,10 +1,12 @@
 #include "vga.h"
 #include <stdint.h>
 
-/* VGA buffer cache in DDR2 (0x81000000) to avoid hardware stalls on read_word.
- * Enables fast read-modify-write operations. Must use uint32_t (32-bit explicit).
+/* Caché en DDR (0x80000000) para evitar leer del hardware VGA
+ * DDR tiene 128 MB disponible, usamos los primeros 153.6 KB para caché de pantalla
+ * Esto evita cuelgues en read_word y permite RMW rápido
+ * CRÍTICO: usar uint32_t explícitamente (no unsigned int) para garantizar 32 bits
  */
-static uint32_t *vga_cache = (uint32_t *)0x81000000;
+static uint32_t *vga_cache = (uint32_t *)0x81000000; // antes 0x80000000
 
 void write_word(int word_addr, unsigned int value) {
     if (word_addr < TOTAL_WORDS) {
@@ -20,7 +22,9 @@ unsigned int read_word(int word_addr) {
     return 0;
 }
 
-/* Writes single pixel using direct write (4-bit color within 8-pixel word). */
+// ─── draw_pixel ───────────────────────────────────────────────────────────────
+// modifica un solo nibble dentro del word sin tocar los otros 7 pixeles
+
 void draw_pixel(int x, int y, unsigned char color) {
     if (x < 0 || x >= SCREEN_W || y < 0 || y >= SCREEN_H) return;
 
@@ -28,8 +32,9 @@ void draw_pixel(int x, int y, unsigned char color) {
     int nibble_pos = 7 - (x % 8);
     int shift      = nibble_pos * 4;
 
-    unsigned int value = (color & 0xF) << shift;
-    write_word(word_addr, value);
+    unsigned int old  = read_word(word_addr);
+    unsigned int mask = ~(0xFu << shift);
+    write_word(word_addr, (old & mask) | ((unsigned int)(color & 0xF) << shift));
 }
 
 unsigned int color_to_word(unsigned char color) {
@@ -47,10 +52,12 @@ void clear_screen(unsigned char color) {
 
 void draw_rect(int x, int y, int w, int h, unsigned char color) {
     unsigned int pattern = color_to_word(color);
-
+    
+    // Calcular palabras por fila
     int start_word = (y * WORDS_PER_LINE) + (x / 8);
     int words_per_row = w / 8;
-
+    
+    // Dibujar fila por fila con words completas
     for(int row = 0; row < h; row++) {
         int word_addr = start_word + (row * WORDS_PER_LINE);
         for(int col = 0; col < words_per_row; col++) {
@@ -60,7 +67,7 @@ void draw_rect(int x, int y, int w, int h, unsigned char color) {
 }
 
 // ─── draw_border ──────────────────────────────────────────────────────────────
-// Draws a 1-pixel border on all four sides of the screen.
+// dibuja un borde de 1 pixel en los 4 lados de la pantalla
 
 
 void draw_hline(int x, int y, int w, unsigned char color) {
@@ -72,19 +79,19 @@ void draw_hline(int x, int y, int w, unsigned char color) {
     unsigned int full_word = color_to_word(color);
     int x_end = x + w;
 
-    /* Unaligned leading pixels */
+    // pixeles iniciales no alineados
     while (x < x_end && (x % 8) != 0) {
         draw_pixel(x, y, color);
         x++;
     }
 
-    /* Full words (8 pixels per write) */
+    // words completas (camino rapido: 8 pixeles por escritura)
     while (x + 8 <= x_end) {
         write_word((y * WORDS_PER_LINE) + (x / 8), full_word);
         x += 8;
     }
 
-    /* Unaligned trailing pixels */
+    // pixeles finales no alineados
     while (x < x_end) {
         draw_pixel(x, y, color);
         x++;
@@ -97,16 +104,17 @@ void draw_vline(int x, int y, int h, unsigned char color) {
     if (y + h > SCREEN_H) h = SCREEN_H - y;
     if (h <= 0) return;
 
-    /* Draw 8-pixel aligned column using draw_rect */
+    // Ruta robusta para HW: dibujar la columna completa de 8 px alineada.
+    // En este IP, la escritura por word es la operación más confiable.
     int x_aligned = x & ~7;
     draw_rect(x_aligned, y, 8, h, color);
 }
 
 void draw_border(unsigned char color) {
-    draw_hline(0,            0,            SCREEN_W, color);
-    draw_hline(0,            SCREEN_H - 1, SCREEN_W, color);
-    draw_vline(0,            0,            SCREEN_H, color);
-    draw_vline(SCREEN_W - 1, 0,            SCREEN_H, color);
+    draw_hline(0,            0,            SCREEN_W, color);  // top
+    draw_hline(0,            SCREEN_H - 1, SCREEN_W, color);  // bottom
+    draw_vline(0,            0,            SCREEN_H, color);  // left
+    draw_vline(SCREEN_W - 1, 0,            SCREEN_H, color);  // right
 }
 
 
@@ -114,26 +122,26 @@ void delay_ms(int ms) {
     for(volatile int i = 0; i < ms * 100000; i++);
 }
 
-/* Renders 480x480 image centered on 640x480 display with black side padding. */
+/* Dibujar imagen 480×480 centrada (con fondo negro en los lados) */
 void draw_image_centered(unsigned char *image_data) {
-    int start_x = (SCREEN_W - 480) / 2;
-    int start_y = (SCREEN_H - 480) / 2;
+    int start_x = (SCREEN_W - 480) / 2;  /* (640 - 480) / 2 = 80 */
+    int start_y = (SCREEN_H - 480) / 2;  /* (480 - 480) / 2 = 0 */
 
-    /* Fill left and right margins with black */
-    draw_rect(0, 0, start_x, SCREEN_H, COLOR_BLACK);
-    draw_rect(start_x + 480, 0, start_x, SCREEN_H, COLOR_BLACK);
+    /* Dibujar fondo negro en los lados */
+    draw_rect(0, 0, start_x, SCREEN_H, COLOR_BLACK);  /* Lado izquierdo */
+    draw_rect(start_x + 480, 0, start_x, SCREEN_H, COLOR_BLACK);  /* Lado derecho */
 
-    /* Copy 480x480 image from DDR2 buffer to VGA */
+    /* Copiar imagen desde DDR2 a VGA */
     uint32_t src_offset = 0;
     for (int y = 0; y < 480; y++) {
-        for (int x = 0; x < 480; x += 8) {
+        for (int x = 0; x < 480; x += 8) {  /* 8 píxeles = 1 word */
             int word_addr = ((start_y + y) * WORDS_PER_LINE) + ((start_x + x) / 8);
             uint32_t word_val = 0;
 
-            /* Pack 4 bytes (8 pixels) into 32-bit word */
+            /* Leer 8 píxeles (4 nibbles = 4 bytes) */
             for (int px = 0; px < 4; px++) {
             uint32_t byte_val = image_data[src_offset++];
-            word_val |= (byte_val << ((3 - px) * 8));
+            word_val |= (byte_val << ((3 - px) * 8));   /* invierte el orden de armado */
 }
 
             write_word(word_addr, word_val);
