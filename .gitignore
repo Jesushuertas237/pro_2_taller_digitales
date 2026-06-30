@@ -9,3 +9,8 @@ SimulationLib/
 *.dcp
 *.rpt
 *.rpx
+*.xpr
+*.xsa
+*.srcs/
+ip_repo/pkg_project/
+ip_repo/scr/
